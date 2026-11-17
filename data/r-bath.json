@@ -1,0 +1,264 @@
+{
+  "source": {
+    "filename": "Stage2c_suites_内部間取り.json",
+    "sha256": "db0b95b4124ebecfe75d44c137b5c39e2ad6873118d0927cc6ff68f14aaa2c25",
+    "version": "Stage2c_suites_v1.1(確定保存用の修正版)",
+    "coordinate": "Rev2c/Stage2b_r1と同じ。X=東、Y=北、単位m。rects は [x0, y0, x1, y1](壁芯)。床は東翼3階 +9.5m(標高75.5m)"
+  },
+  "room": {
+    "id": "wing_e.3F.suite_R.bath",
+    "short_id": "R.bath",
+    "parent_zone": "wing_e.3F.suite_R",
+    "suite": "R",
+    "kind": "bath",
+    "name": "主寝室専用浴室",
+    "zone_class": "プライベート",
+    "rects": [
+      [
+        653.4,
+        530,
+        656,
+        533.4
+      ],
+      [
+        651,
+        533.4,
+        656,
+        536
+      ]
+    ],
+    "area_centreline_m2": 21.84,
+    "area_inner_m2": 19.69,
+    "wall_deduction_m2": 2.15,
+    "min_clear_dim_m": [
+      2.4,
+      2.48
+    ],
+    "target_m2": [
+      18,
+      22
+    ],
+    "target_ok": true,
+    "target_note": null,
+    "exterior_edges": [],
+    "windows": [],
+    "status": "仮案(Stage2c 第1便)"
+  },
+  "parentZoneRects": [
+    [
+      642,
+      524,
+      656,
+      530
+    ],
+    [
+      640,
+      530,
+      656,
+      536
+    ]
+  ],
+  "wallAssumption": {
+    "exterior_m": 0.5,
+    "between_zones_m": 0.25,
+    "internal_partition_m": 0.15,
+    "rule": "壁芯から各壁厚の半分を両側へ控除して内法面積・有効寸法を計算。構造・遮音・防火の検討による値ではない(仮定)"
+  },
+  "doors": [
+    {
+      "id": "R_ba_br",
+      "at": [
+        654.7,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.bath",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bath",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.9,
+          0.89
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ba_wr",
+      "at": [
+        653.4,
+        531.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.bath"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bath",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.3,
+          1.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    }
+  ],
+  "furniture": [
+    {
+      "room": "R.bath",
+      "id": "R.b.tub",
+      "name": "大型浴槽(1.9×0.9)",
+      "rect": [
+        651.2,
+        534.975,
+        653.1,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          651.2,
+          534.275,
+          653.1,
+          534.975
+        ]
+      ],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.shower",
+      "name": "独立シャワー(1.2×1.0)",
+      "rect": [
+        654.675,
+        534.875,
+        655.875,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          654.675,
+          534.15,
+          655.875,
+          534.875
+        ]
+      ],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.vanity",
+      "name": "ダブル洗面台(1.6×0.6)",
+      "rect": [
+        655.275,
+        531.0,
+        655.875,
+        532.6
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          654.575,
+          531.0,
+          655.275,
+          532.6
+        ]
+      ],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.toilet",
+      "name": "便器",
+      "rect": [
+        651.075,
+        533.55,
+        651.825,
+        534.0
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          651.825,
+          533.5,
+          652.425,
+          534.05
+        ]
+      ],
+      "h": 0.4,
+      "note": ""
+    }
+  ],
+  "referenceChecks": {
+    "area_inner_m2": 19.69,
+    "furniture_m2": 4.21,
+    "free_floor_m2": 15.48,
+    "path": {
+      "required_m": 0.7,
+      "ok": true,
+      "max_continuous_width_m": 1.5,
+      "points": [
+        "R_ba_br",
+        "R_ba_wr",
+        "目標",
+        "目標",
+        "目標",
+        "目標"
+      ]
+    },
+    "swings": [
+      {
+        "door": "R_ba_br",
+        "furniture_hit_m2": 0.0,
+        "overlaps_use_space_of": []
+      },
+      {
+        "door": "R_ba_wr",
+        "furniture_hit_m2": 0.0,
+        "overlaps_use_space_of": []
+      }
+    ],
+    "approach": [
+      {
+        "door": "R_ba_br",
+        "blocked_m2": 0.0
+      },
+      {
+        "door": "R_ba_wr",
+        "blocked_m2": 0.0
+      }
+    ]
+  },
+  "display": {
+    "originXY": [
+      651,
+      530
+    ],
+    "floorLevelM": 9.5,
+    "floorElevationM": 75.5,
+    "wallHeightM": 2.7,
+    "wallHeightSource": "Stage2c_suites_設計検証報告.md の水回り天井高（設計資料の仮定）",
+    "doorHeightsM": {
+      "R_ba_br": 2.1,
+      "R_ba_wr": 2.1
+    },
+    "doorHeightSource": "原作者指定の3D表示用暫定値（設計上の有効開口高は未確定）"
+  }
+}
