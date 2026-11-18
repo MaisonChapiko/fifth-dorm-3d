@@ -1,0 +1,2093 @@
+{
+  "suite": "R",
+  "source": {
+    "filename": "Stage2c_suites_内部間取り.json",
+    "version": "Stage2c_suites_v1.1(確定保存用の修正版)",
+    "sha256": "db0b95b4124ebecfe75d44c137b5c39e2ad6873118d0927cc6ff68f14aaa2c25",
+    "coordinate": "Rev2c/Stage2b_r1と同じ。X=東、Y=北、単位m。rects は [x0, y0, x1, y1](壁芯)。床は東翼3階 +9.5m(標高75.5m)"
+  },
+  "rooms": [
+    {
+      "id": "wing_e.3F.suite_R.living",
+      "short_id": "R.living",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "living",
+      "name": "リビング・ダイニング",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          642,
+          524,
+          649.6,
+          530
+        ]
+      ],
+      "area_centreline_m2": 45.6,
+      "area_inner_m2": 41.29,
+      "wall_deduction_m2": 4.31,
+      "min_clear_dim_m": [
+        5.67
+      ],
+      "target_m2": [
+        45,
+        50
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            642.0,
+            524.0
+          ],
+          "b": [
+            649.6,
+            524.0
+          ],
+          "length_m": 7.6,
+          "facing": "南"
+        },
+        {
+          "a": [
+            642.0,
+            524.0
+          ],
+          "b": [
+            642.0,
+            530.0
+          ],
+          "length_m": 6.0,
+          "facing": "西"
+        }
+      ],
+      "windows": [
+        {
+          "facing": "南",
+          "centre": [
+            645.8,
+            524.0
+          ],
+          "width_m": 3.2,
+          "orient": "h",
+          "type": "大窓+造り付けウィンドウシート(長さ3.6m)",
+          "sill_m": 0.45
+        },
+        {
+          "facing": "西",
+          "centre": [
+            642.0,
+            525.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        },
+        {
+          "facing": "西",
+          "centre": [
+            642.0,
+            528.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        }
+      ],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.ph",
+      "short_id": "R.ph",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "private_hall",
+      "name": "プライベートホール",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          649.6,
+          527.4,
+          651,
+          530
+        ]
+      ],
+      "area_centreline_m2": 3.64,
+      "area_inner_m2": 3.06,
+      "wall_deduction_m2": 0.58,
+      "min_clear_dim_m": [
+        1.25
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.closet",
+      "short_id": "R.closet",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "storage",
+      "name": "私室収納",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          649.6,
+          524,
+          651,
+          527.4
+        ]
+      ],
+      "area_centreline_m2": 4.76,
+      "area_inner_m2": 3.84,
+      "wall_deduction_m2": 0.92,
+      "min_clear_dim_m": [
+        1.25
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            649.6,
+            524.0
+          ],
+          "b": [
+            651.0,
+            524.0
+          ],
+          "length_m": 1.4,
+          "facing": "南"
+        }
+      ],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.bedroom",
+      "short_id": "R.bedroom",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "bedroom",
+      "name": "主寝室",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          651,
+          524,
+          656,
+          530
+        ]
+      ],
+      "area_centreline_m2": 30.0,
+      "area_inner_m2": 26.53,
+      "wall_deduction_m2": 3.47,
+      "min_clear_dim_m": [
+        4.67
+      ],
+      "target_m2": [
+        28,
+        32
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            651.0,
+            524.0
+          ],
+          "b": [
+            656.0,
+            524.0
+          ],
+          "length_m": 5.0,
+          "facing": "南"
+        },
+        {
+          "a": [
+            656.0,
+            524.0
+          ],
+          "b": [
+            656.0,
+            530.0
+          ],
+          "length_m": 6.0,
+          "facing": "東"
+        }
+      ],
+      "windows": [
+        {
+          "facing": "東",
+          "centre": [
+            656.0,
+            525.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        },
+        {
+          "facing": "東",
+          "centre": [
+            656.0,
+            528.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        },
+        {
+          "facing": "南",
+          "centre": [
+            653.5,
+            524.0
+          ],
+          "width_m": 1.6,
+          "orient": "h",
+          "type": "窓",
+          "sill_m": 0.75
+        }
+      ],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.kitchen",
+      "short_id": "R.kitchen",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "kitchen",
+      "name": "キッチン",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          640,
+          530,
+          644.2,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 14.28,
+      "area_inner_m2": 12.67,
+      "wall_deduction_m2": 1.61,
+      "min_clear_dim_m": [
+        3.25
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            640.0,
+            530.0
+          ],
+          "b": [
+            642.0,
+            530.0
+          ],
+          "length_m": 2.0,
+          "facing": "南"
+        }
+      ],
+      "windows": [
+        {
+          "facing": "南",
+          "centre": [
+            641.0,
+            530.0
+          ],
+          "width_m": 1.2,
+          "orient": "h",
+          "type": "窓",
+          "sill_m": 0.75
+        }
+      ],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.pantry",
+      "short_id": "R.pantry",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "storage",
+      "name": "パントリー",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          640,
+          533.4,
+          642.8,
+          536
+        ]
+      ],
+      "area_centreline_m2": 7.28,
+      "area_inner_m2": 6.24,
+      "wall_deduction_m2": 1.04,
+      "min_clear_dim_m": [
+        2.4
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.entry",
+      "short_id": "R.entry",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "entry",
+      "name": "玄関ホール",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          642.8,
+          533.4,
+          646.2,
+          536
+        ],
+        [
+          644.2,
+          530,
+          645.8,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 14.28,
+      "area_inner_m2": 12.74,
+      "wall_deduction_m2": 1.54,
+      "min_clear_dim_m": [
+        2.48,
+        1.45
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.wc",
+      "short_id": "R.wc",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "guest_wc",
+      "name": "ゲスト用トイレ",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          646.2,
+          533.4,
+          648.2,
+          536
+        ]
+      ],
+      "area_centreline_m2": 5.2,
+      "area_inner_m2": 4.44,
+      "wall_deduction_m2": 0.76,
+      "min_clear_dim_m": [
+        1.85
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.study",
+      "short_id": "R.study",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "study",
+      "name": "書斎",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          645.8,
+          530,
+          649.6,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 12.92,
+      "area_inner_m2": 11.86,
+      "wall_deduction_m2": 1.06,
+      "min_clear_dim_m": [
+        3.25
+      ],
+      "target_m2": [
+        12,
+        15
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.wardrobe",
+      "short_id": "R.wardrobe",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "wardrobe",
+      "name": "衣装室",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          649.6,
+          530,
+          653.4,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 12.92,
+      "area_inner_m2": 11.86,
+      "wall_deduction_m2": 1.06,
+      "min_clear_dim_m": [
+        3.25
+      ],
+      "target_m2": [
+        12,
+        15
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.storage",
+      "short_id": "R.storage",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "storage",
+      "name": "収納(リネン・旅行鞄)",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          648.2,
+          533.4,
+          651,
+          536
+        ]
+      ],
+      "area_centreline_m2": 7.28,
+      "area_inner_m2": 6.36,
+      "wall_deduction_m2": 0.92,
+      "min_clear_dim_m": [
+        2.4
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.bath",
+      "short_id": "R.bath",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "bath",
+      "name": "主寝室専用浴室",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          653.4,
+          530,
+          656,
+          533.4
+        ],
+        [
+          651,
+          533.4,
+          656,
+          536
+        ]
+      ],
+      "area_centreline_m2": 21.84,
+      "area_inner_m2": 19.69,
+      "wall_deduction_m2": 2.15,
+      "min_clear_dim_m": [
+        2.4,
+        2.48
+      ],
+      "target_m2": [
+        18,
+        22
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    }
+  ],
+  "parentZoneRects": [
+    [
+      642,
+      524,
+      656,
+      530
+    ],
+    [
+      640,
+      530,
+      656,
+      536
+    ]
+  ],
+  "wallAssumption": {
+    "exterior_m": 0.5,
+    "between_zones_m": 0.25,
+    "internal_partition_m": 0.15,
+    "rule": "壁芯から各壁厚の半分を両側へ控除して内法面積・有効寸法を計算。構造・遮音・防火の検討による値ではない(仮定)"
+  },
+  "doors": [
+    {
+      "id": "R_ent",
+      "at": [
+        644,
+        536
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.p_cor",
+        "wing_e.3F.suite_R.entry"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.9,
+      "swing_into": "wing_e.3F.suite_R.entry",
+      "auth": "なし",
+      "source": "Stage2b_r1(変更なし)",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.74,
+          1.74
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_hall_living",
+      "at": [
+        645.0,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.entry",
+        "wing_e.3F.suite_R.living"
+      ],
+      "kind": "arch",
+      "clear_width_m": 1.3,
+      "swing_into": null,
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.15,
+          0.15
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": null
+      }
+    },
+    {
+      "id": "R_wc",
+      "at": [
+        646.2,
+        534.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.entry",
+        "wing_e.3F.suite_R.wc"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.wc",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.9,
+          0.89
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_kitchen",
+      "at": [
+        643.1,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.living",
+        "wing_e.3F.suite_R.kitchen"
+      ],
+      "kind": "arch",
+      "clear_width_m": 1.8,
+      "swing_into": null,
+      "auth": "なし",
+      "note": "アーチ+腰壁でセミオープン",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.2,
+          0.19
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": null
+      }
+    },
+    {
+      "id": "R_pantry",
+      "at": [
+        641.4,
+        533.4
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.kitchen",
+        "wing_e.3F.suite_R.pantry"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.pantry",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.0,
+          1.0
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_study",
+      "at": [
+        647.7,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.living",
+        "wing_e.3F.suite_R.study"
+      ],
+      "kind": "double",
+      "clear_width_m": 1.5,
+      "swing_into": "wing_e.3F.suite_R.study",
+      "auth": "なし",
+      "finish": "装飾ガラス入り両開き扉+上部欄間ガラス",
+      "note": "外窓なし。原作者決定B2=案A(2026-11-17):現状維持+欄間ガラスでリビングから間接採光。自然採光の十分性は未検証",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.15,
+          1.14
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ph",
+      "at": [
+        649.6,
+        528.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.living",
+        "wing_e.3F.suite_R.ph"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.9,
+      "swing_into": "wing_e.3F.suite_R.ph",
+      "auth": "なし",
+      "note": "リビング側からプライベートゾーンへ",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.85,
+          0.84
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ph_br",
+      "at": [
+        651,
+        528.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.ph",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.9,
+      "swing_into": "wing_e.3F.suite_R.bedroom",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.85,
+          0.84
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ph_wr",
+      "at": [
+        650.3,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.ph",
+        "wing_e.3F.suite_R.wardrobe"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.85,
+      "swing_into": "wing_e.3F.suite_R.wardrobe",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.27,
+          0.27
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_closet",
+      "at": [
+        650.3,
+        527.4
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.ph",
+        "wing_e.3F.suite_R.closet"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.closet",
+      "auth": "なし",
+      "note": "第2便で寝室側から私室ホール側へ移設(寝室のベッド配置のため)",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.29,
+          0.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_wr_br",
+      "at": [
+        652.2,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bedroom",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.8,
+          0.79
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ba_br",
+      "at": [
+        654.7,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.bath",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bath",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.9,
+          0.89
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ba_wr",
+      "at": [
+        653.4,
+        531.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.bath"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bath",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.3,
+          1.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_storage",
+      "at": [
+        650.3,
+        533.4
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.storage"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.storage",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.29,
+          0.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    }
+  ],
+  "furniture": [
+    {
+      "room": "R.entry",
+      "id": "R.e.console",
+      "name": "コンソール+姿見",
+      "rect": [
+        642.875,
+        534.0,
+        643.225,
+        535.0
+      ],
+      "kind": "家具",
+      "clear": [
+        [
+          643.225,
+          534.0,
+          643.7,
+          535.0
+        ]
+      ],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.entry",
+      "id": "R.e.closet",
+      "name": "造り付けコート収納",
+      "rect": [
+        645.525,
+        533.475,
+        646.125,
+        534.2
+      ],
+      "kind": "造作",
+      "clear": [
+        [
+          644.8,
+          533.475,
+          645.525,
+          534.2
+        ]
+      ],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.wc",
+      "id": "R.wc.toilet",
+      "name": "便器",
+      "rect": [
+        647.4,
+        535.125,
+        647.85,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          647.25,
+          534.525,
+          648.0,
+          535.125
+        ]
+      ],
+      "h": 0.4,
+      "note": ""
+    },
+    {
+      "room": "R.wc",
+      "id": "R.wc.basin",
+      "name": "手洗い器",
+      "rect": [
+        647.825,
+        533.6,
+        648.125,
+        534.1
+      ],
+      "kind": "設備",
+      "clear": [],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.counter_w",
+      "name": "調理台(西、シンク)",
+      "rect": [
+        640.125,
+        530.9,
+        640.775,
+        533.325
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          640.775,
+          530.9,
+          641.675,
+          533.325
+        ]
+      ],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.counter_s",
+      "name": "調理台(南、窓下)",
+      "rect": [
+        640.125,
+        530.25,
+        642.1,
+        530.9
+      ],
+      "kind": "設備",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.counter_n",
+      "name": "収納カウンター(北)",
+      "rect": [
+        641.9,
+        532.675,
+        643.4,
+        533.325
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          641.9,
+          531.775,
+          643.4,
+          532.675
+        ]
+      ],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.fridge",
+      "name": "冷蔵庫",
+      "rect": [
+        643.425,
+        532.625,
+        644.125,
+        533.325
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          643.425,
+          531.925,
+          644.125,
+          532.625
+        ]
+      ],
+      "h": 1.9,
+      "note": ""
+    },
+    {
+      "room": "R.pantry",
+      "id": "R.p.shelf",
+      "name": "棚",
+      "rect": [
+        640.125,
+        535.475,
+        642.725,
+        535.875
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.mantel",
+      "name": "魔法式暖炉(マントルピース)",
+      "rect": [
+        649.125,
+        525.3,
+        649.525,
+        526.9
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 1.2,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.hearth",
+      "name": "炉前(ハース)",
+      "rect": [
+        648.725,
+        525.5,
+        649.125,
+        526.7
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 0.05,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.ctable",
+      "name": "ローテーブル",
+      "rect": [
+        647.75,
+        525.55,
+        648.25,
+        526.65
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.45,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.sofa",
+      "name": "大型ソファ(3人掛け2.2m)",
+      "rect": [
+        646.6,
+        525.0,
+        647.5,
+        527.2
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.8,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.seat",
+      "name": "造り付けウィンドウシート(3.6m)",
+      "rect": [
+        644.0,
+        524.25,
+        647.6,
+        524.8
+      ],
+      "kind": "造作",
+      "clear": [
+        [
+          644.0,
+          524.8,
+          646.4,
+          525.4
+        ]
+      ],
+      "h": 0.45,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.dtable",
+      "name": "食卓(6人、1.6×0.9)",
+      "rect": [
+        643.2,
+        527.4,
+        644.8,
+        528.3
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.75,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_s",
+      "name": "椅子(南側)",
+      "rect": [
+        643.3,
+        526.8,
+        644.7,
+        527.4
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_n",
+      "name": "椅子(北側)",
+      "rect": [
+        643.3,
+        528.3,
+        644.7,
+        528.9
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_w",
+      "name": "椅子(西端)",
+      "rect": [
+        642.6,
+        527.5,
+        643.2,
+        528.2
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_e",
+      "name": "椅子(東端)",
+      "rect": [
+        644.8,
+        527.5,
+        645.4,
+        528.2
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.arm",
+      "name": "アームチェア",
+      "rect": [
+        642.45,
+        524.95,
+        643.3,
+        525.8
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.closet",
+      "id": "R.c.hang",
+      "name": "収納(ハンガー・棚)",
+      "rect": [
+        649.675,
+        524.25,
+        650.925,
+        526.0
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.desk",
+      "name": "大机(1.6×0.75)",
+      "rect": [
+        646.5,
+        532.575,
+        648.1,
+        533.325
+      ],
+      "kind": "家具",
+      "clear": [
+        [
+          646.9,
+          531.825,
+          647.7,
+          532.575
+        ]
+      ],
+      "h": 0.75,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.books",
+      "name": "本棚(東壁2.7m)",
+      "rect": [
+        649.175,
+        530.6,
+        649.525,
+        533.325
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.magic",
+      "name": "魔法研究用収納",
+      "rect": [
+        645.875,
+        530.9,
+        646.375,
+        532.1
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.read",
+      "name": "読書椅子+小卓",
+      "rect": [
+        648.25,
+        530.9,
+        649.1,
+        531.75
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.store_w",
+      "name": "収納(西壁)",
+      "rect": [
+        649.675,
+        531.0,
+        650.275,
+        532.4
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.store_n",
+      "name": "収納(北壁)",
+      "rect": [
+        651.0,
+        532.725,
+        653.325,
+        533.325
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.island",
+      "name": "小型アイランド収納(1.0×0.5)",
+      "rect": [
+        651.2,
+        531.3,
+        652.2,
+        531.8
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.mirror",
+      "name": "全身鏡(東壁)",
+      "rect": [
+        653.275,
+        530.2,
+        653.325,
+        531.2
+      ],
+      "kind": "造作",
+      "clear": [
+        [
+          652.55,
+          530.2,
+          653.275,
+          531.2
+        ]
+      ],
+      "h": 1.9,
+      "note": ""
+    },
+    {
+      "room": "R.storage",
+      "id": "R.st.shelf",
+      "name": "棚(リネン・旅行鞄)",
+      "rect": [
+        648.275,
+        535.275,
+        650.925,
+        535.875
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.tub",
+      "name": "大型浴槽(1.9×0.9)",
+      "rect": [
+        651.2,
+        534.975,
+        653.1,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          651.2,
+          534.275,
+          653.1,
+          534.975
+        ]
+      ],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.shower",
+      "name": "独立シャワー(1.2×1.0)",
+      "rect": [
+        654.675,
+        534.875,
+        655.875,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          654.675,
+          534.15,
+          655.875,
+          534.875
+        ]
+      ],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.vanity",
+      "name": "ダブル洗面台(1.6×0.6)",
+      "rect": [
+        655.275,
+        531.0,
+        655.875,
+        532.6
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          654.575,
+          531.0,
+          655.275,
+          532.6
+        ]
+      ],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.toilet",
+      "name": "便器",
+      "rect": [
+        651.075,
+        533.55,
+        651.825,
+        534.0
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          651.825,
+          533.5,
+          652.425,
+          534.05
+        ]
+      ],
+      "h": 0.4,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.bed",
+      "name": "キングベッド",
+      "rect": [
+        651.075,
+        525.6,
+        653.225,
+        527.55
+      ],
+      "kind": "家具",
+      "clear": [
+        [
+          653.225,
+          525.6,
+          653.9,
+          527.55
+        ]
+      ],
+      "h": 0.55,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.st1",
+      "name": "サイドテーブル",
+      "rect": [
+        651.075,
+        525.1,
+        651.525,
+        525.6
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.st2",
+      "name": "サイドテーブル",
+      "rect": [
+        651.075,
+        527.55,
+        651.525,
+        528.05
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.chair",
+      "name": "椅子(東の窓辺)",
+      "rect": [
+        654.9,
+        527.0,
+        655.7,
+        527.8
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.dresser",
+      "name": "ドレッサー",
+      "rect": [
+        654.2,
+        524.25,
+        655.4,
+        524.75
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.8,
+      "note": ""
+    }
+  ],
+  "referenceChecks": {
+    "R.living": {
+      "area_inner_m2": 41.29,
+      "furniture_m2": 10.31,
+      "free_floor_m2": 30.98,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.05,
+        "points": [
+          "R_hall_living",
+          "R_kitchen",
+          "R_study",
+          "R_ph",
+          "目標",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [],
+      "approach": [
+        {
+          "door": "R_hall_living",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_kitchen",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_study",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ph",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.ph": {
+      "area_inner_m2": 3.06,
+      "furniture_m2": 0.0,
+      "free_floor_m2": 3.06,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.25,
+        "points": [
+          "R_ph",
+          "R_ph_br",
+          "R_ph_wr",
+          "R_closet"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ph",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ph",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_ph_br",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_ph_wr",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_closet",
+          "blocked_m2": 0
+        }
+      ]
+    },
+    "R.closet": {
+      "area_inner_m2": 3.84,
+      "furniture_m2": 2.19,
+      "free_floor_m2": 1.65,
+      "path": {
+        "required_m": 0,
+        "ok": true,
+        "max_continuous_width_m": 1.25,
+        "points": [
+          "R_closet"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_closet",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_closet",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.bedroom": {
+      "area_inner_m2": 26.53,
+      "furniture_m2": 5.88,
+      "free_floor_m2": 20.65,
+      "path": {
+        "required_m": 0.75,
+        "ok": true,
+        "max_continuous_width_m": 0.94,
+        "points": [
+          "R_ph_br",
+          "R_wr_br",
+          "R_ba_br",
+          "目標",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ph_br",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        },
+        {
+          "door": "R_wr_br",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ph_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_wr_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ba_br",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.kitchen": {
+      "area_inner_m2": 12.67,
+      "furniture_m2": 4.33,
+      "free_floor_m2": 8.34,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.17,
+        "points": [
+          "R_kitchen",
+          "R_pantry",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [],
+      "approach": [
+        {
+          "door": "R_kitchen",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_pantry",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.pantry": {
+      "area_inner_m2": 6.24,
+      "furniture_m2": 1.04,
+      "free_floor_m2": 5.2,
+      "path": {
+        "required_m": 0,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_pantry"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_pantry",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_pantry",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.entry": {
+      "area_inner_m2": 12.74,
+      "furniture_m2": 0.79,
+      "free_floor_m2": 11.95,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.25,
+        "points": [
+          "R_ent",
+          "R_hall_living",
+          "R_wc"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ent",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ent",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_hall_living",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_wc",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.wc": {
+      "area_inner_m2": 4.44,
+      "furniture_m2": 0.49,
+      "free_floor_m2": 3.95,
+      "path": {
+        "required_m": 0.6,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_wc"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_wc",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_wc",
+          "blocked_m2": 0
+        }
+      ]
+    },
+    "R.study": {
+      "area_inner_m2": 11.86,
+      "furniture_m2": 3.48,
+      "free_floor_m2": 8.38,
+      "path": {
+        "required_m": 0.75,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_study",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_study",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_study",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.wardrobe": {
+      "area_inner_m2": 11.86,
+      "furniture_m2": 2.79,
+      "free_floor_m2": 9.07,
+      "path": {
+        "required_m": 0.75,
+        "ok": true,
+        "max_continuous_width_m": 0.8,
+        "points": [
+          "R_ph_wr",
+          "R_wr_br",
+          "R_ba_wr",
+          "R_storage",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ph_wr",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ph_wr",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_wr_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ba_wr",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_storage",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.storage": {
+      "area_inner_m2": 6.36,
+      "furniture_m2": 1.59,
+      "free_floor_m2": 4.77,
+      "path": {
+        "required_m": 0,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_storage"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_storage",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_storage",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.bath": {
+      "area_inner_m2": 19.69,
+      "furniture_m2": 4.21,
+      "free_floor_m2": 15.48,
+      "path": {
+        "required_m": 0.7,
+        "ok": true,
+        "max_continuous_width_m": 1.5,
+        "points": [
+          "R_ba_br",
+          "R_ba_wr",
+          "目標",
+          "目標",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ba_br",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        },
+        {
+          "door": "R_ba_wr",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ba_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ba_wr",
+          "blocked_m2": 0.0
+        }
+      ]
+    }
+  },
+  "display": {
+    "originXY": [
+      640,
+      524
+    ],
+    "floorLevelM": 9.5,
+    "floorElevationM": 75.5,
+    "sectionHeightM": 0.85,
+    "heights": {
+      "R.living": {
+        "m": 3.4,
+        "basis": "報告書の仮定"
+      },
+      "R.ph": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.closet": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.bedroom": {
+        "m": 3.3,
+        "basis": "報告書の仮定"
+      },
+      "R.kitchen": {
+        "m": 2.7,
+        "basis": "報告書の水回りの値をキッチンに適用"
+      },
+      "R.pantry": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.entry": {
+        "m": 3,
+        "basis": "報告書の仮定"
+      },
+      "R.wc": {
+        "m": 2.7,
+        "basis": "報告書の仮定"
+      },
+      "R.study": {
+        "m": 3,
+        "basis": "報告書の仮定"
+      },
+      "R.wardrobe": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.storage": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.bath": {
+        "m": 2.7,
+        "basis": "報告書の仮定"
+      }
+    },
+    "doorHeightsM": {
+      "R_ent": 2.1,
+      "R_hall_living": 2.1,
+      "R_wc": 2.1,
+      "R_kitchen": 2.1,
+      "R_pantry": 2.1,
+      "R_study": 2.1,
+      "R_ph": 2.1,
+      "R_ph_br": 2.1,
+      "R_ph_wr": 2.1,
+      "R_closet": 2.1,
+      "R_wr_br": 2.1,
+      "R_ba_br": 2.1,
+      "R_ba_wr": 2.1,
+      "R_storage": 2.1
+    },
+    "windowHeadM": 2.4,
+    "transoms": [
+      {
+        "id": "R_study-transom",
+        "doorId": "R_study",
+        "name": "書斎入口の上部欄間ガラス",
+        "note": "設置方針のみ確定。幅・高さ・位置の詳細は未確定のため、書斎扉の上に記号で表示。"
+      }
+    ]
+  }
+}
