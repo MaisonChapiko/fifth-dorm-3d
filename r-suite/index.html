@@ -1,1 +1,3021 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#102729">
+<title>第五寮 | Rスイート 実寸3D</title>
+<style>
+:root{color-scheme:light;--ink:#142a2d;--muted:#4a6061;--line:#c9d9d7;--accent:#176c64;--paper:#f0f5f4;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}
+body{margin:0;overscroll-behavior:none}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:14px;background:#102729;color:#f4faf8;padding:15px max(16px,calc((100vw - 1120px)/2));border-bottom:3px solid #5bada0}
+.mast p{margin:0 0 3px;font-size:.73rem;letter-spacing:.09em;color:#b4d3ce}
+h1{font-size:clamp(1.3rem,3.8vw,2rem);line-height:1.2;margin:0;letter-spacing:.03em}
+.version{font-size:.72rem;white-space:nowrap;color:#c8e4df;text-align:right;font-variant-numeric:tabular-nums}
+.version span{display:block;font-size:.95rem;color:white;margin-top:3px}
+main{width:min(1120px,100%);margin:auto;padding:14px 14px max(24px,env(safe-area-inset-bottom));display:grid;gap:14px}
+.workspace,.inspection{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.toolbar{display:flex;gap:5px;padding:7px;border-bottom:1px solid var(--line)}
+button,select{font:inherit;color:inherit;background:#fff;border:1px solid var(--line);border-radius:7px;min-height:44px}
+button{cursor:pointer;padding:0 12px}
+button[aria-pressed=true]{background:#145751;color:white;border-color:#145751}
+:focus-visible{outline:2px solid #277e76;outline-offset:2px}
+.toolbar button{flex:1;font-size:.87rem;padding:0 5px}
+button:hover:not([aria-pressed=true]){background:#edf6f3}
+select{padding:0 8px;font-size:16px;max-width:100%}
+.viewport{position:relative;height:clamp(260px,48vh,540px);height:clamp(260px,48svh,540px);background:#e6eeed;touch-action:none;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;overflow:hidden;outline-offset:-3px}
+.viewport canvas{display:block;width:100%;height:100%}
+.labels{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.label{position:absolute;max-width:135px;min-height:28px;padding:4px 8px;font-size:.72rem;line-height:1.2;white-space:nowrap;background:#fffffff2;border:1px solid #64817e;border-radius:5px;transform:translate(-50%,-50%);pointer-events:auto;touch-action:none}
+.label.active{background:#145751;color:#fff}
+.label[hidden],#loading[hidden]{display:none}
+#compass{position:absolute;top:10px;right:10px;width:37px;height:44px;display:grid;place-content:center;text-align:center;background:#ffffffdb;border-radius:8px;line-height:1.1;font-size:.68rem;pointer-events:none}
+#north{display:block;font-size:1.2rem}
+.zoom{position:absolute;bottom:8px;right:8px;display:flex;gap:4px}
+.zoom button{width:44px;padding:0;font-size:1.15rem;touch-action:manipulation}
+#loading{position:absolute;left:50%;top:50%;width:max-content;max-width:85%;transform:translate(-50%,-50%);padding:12px;background:white;border-radius:6px;font-size:.85rem}
+.caption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:3px 8px;padding:7px 10px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--line)}
+.layers{margin:0;padding:4px 8px;display:flex;flex-wrap:wrap;column-gap:12px;border-top:1px solid var(--line);font-size:.82rem}
+.layers label{display:flex;align-items:center;min-height:44px;gap:4px;white-space:nowrap}
+.layers input{accent-color:var(--accent);width:17px;height:17px;margin:0}
+.inspection{padding:13px}
+.inspect-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+h2{margin:0;font-size:1.05rem}
+#object{flex:1;min-width:0}
+dl{margin:0}
+dl div{display:grid;grid-template-columns:minmax(90px,30%) 1fr;gap:7px;padding:7px 0;border-bottom:1px solid #e3ecea;font-size:.84rem}
+dt{color:var(--muted)}
+dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.caution{font-size:.81rem;margin:12px 0;padding:9px 10px;background:#fff6df;border-left:3px solid #ad7b1b}
+details{font-size:.82rem;color:var(--muted)}
+details p{margin:6px 0 0}
+summary{cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(min-width:1024px){main{grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);align-items:start;padding-top:22px}.viewport{height:clamp(400px,66vh,680px)}.inspect-head{align-items:stretch;flex-direction:column}}
+.room-control{display:flex;align-items:center;gap:10px;padding:4px 10px 7px;border-bottom:1px solid var(--line);font-size:.85rem}
+.room-control select{flex:1;min-width:0}
+.viewport{height:clamp(265px,46svh,540px)}
+.label{min-height:31px;font-size:.72rem;max-width:min(148px,44vw);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.label[data-layer=equipment]{font-size:.68rem;background:#fbfaf0f5;border-color:#999078}
+.label.active{color:#fff;background:#145751}
+.key{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:12px;font-size:.75rem}
+.key span::before{content:"";display:inline-block;width:.65rem;height:.65rem;margin-right:5px;border:1px solid #657e7c;border-radius:2px}
+.door-key::before{background:#eecb81}.window-key::before{background:#7dc1e5}.space-key::before{background:#7ac8bb}
+.bath-link{color:#175d57;font-size:.82rem}
+@media(min-width:1024px){.viewport{height:clamp(400px,65vh,680px)}}
+@media(max-width:430px){.layers{column-gap:9px;font-size:.76rem}main{padding-inline:9px}}
+</style>
+<script type="application/json" id="suite-data">{
+  "suite": "R",
+  "source": {
+    "filename": "Stage2c_suites_内部間取り.json",
+    "version": "Stage2c_suites_v1.1(確定保存用の修正版)",
+    "sha256": "db0b95b4124ebecfe75d44c137b5c39e2ad6873118d0927cc6ff68f14aaa2c25",
+    "coordinate": "Rev2c/Stage2b_r1と同じ。X=東、Y=北、単位m。rects は [x0, y0, x1, y1](壁芯)。床は東翼3階 +9.5m(標高75.5m)"
+  },
+  "rooms": [
+    {
+      "id": "wing_e.3F.suite_R.living",
+      "short_id": "R.living",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "living",
+      "name": "リビング・ダイニング",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          642,
+          524,
+          649.6,
+          530
+        ]
+      ],
+      "area_centreline_m2": 45.6,
+      "area_inner_m2": 41.29,
+      "wall_deduction_m2": 4.31,
+      "min_clear_dim_m": [
+        5.67
+      ],
+      "target_m2": [
+        45,
+        50
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            642.0,
+            524.0
+          ],
+          "b": [
+            649.6,
+            524.0
+          ],
+          "length_m": 7.6,
+          "facing": "南"
+        },
+        {
+          "a": [
+            642.0,
+            524.0
+          ],
+          "b": [
+            642.0,
+            530.0
+          ],
+          "length_m": 6.0,
+          "facing": "西"
+        }
+      ],
+      "windows": [
+        {
+          "facing": "南",
+          "centre": [
+            645.8,
+            524.0
+          ],
+          "width_m": 3.2,
+          "orient": "h",
+          "type": "大窓+造り付けウィンドウシート(長さ3.6m)",
+          "sill_m": 0.45
+        },
+        {
+          "facing": "西",
+          "centre": [
+            642.0,
+            525.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        },
+        {
+          "facing": "西",
+          "centre": [
+            642.0,
+            528.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        }
+      ],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.ph",
+      "short_id": "R.ph",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "private_hall",
+      "name": "プライベートホール",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          649.6,
+          527.4,
+          651,
+          530
+        ]
+      ],
+      "area_centreline_m2": 3.64,
+      "area_inner_m2": 3.06,
+      "wall_deduction_m2": 0.58,
+      "min_clear_dim_m": [
+        1.25
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.closet",
+      "short_id": "R.closet",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "storage",
+      "name": "私室収納",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          649.6,
+          524,
+          651,
+          527.4
+        ]
+      ],
+      "area_centreline_m2": 4.76,
+      "area_inner_m2": 3.84,
+      "wall_deduction_m2": 0.92,
+      "min_clear_dim_m": [
+        1.25
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            649.6,
+            524.0
+          ],
+          "b": [
+            651.0,
+            524.0
+          ],
+          "length_m": 1.4,
+          "facing": "南"
+        }
+      ],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.bedroom",
+      "short_id": "R.bedroom",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "bedroom",
+      "name": "主寝室",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          651,
+          524,
+          656,
+          530
+        ]
+      ],
+      "area_centreline_m2": 30.0,
+      "area_inner_m2": 26.53,
+      "wall_deduction_m2": 3.47,
+      "min_clear_dim_m": [
+        4.67
+      ],
+      "target_m2": [
+        28,
+        32
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            651.0,
+            524.0
+          ],
+          "b": [
+            656.0,
+            524.0
+          ],
+          "length_m": 5.0,
+          "facing": "南"
+        },
+        {
+          "a": [
+            656.0,
+            524.0
+          ],
+          "b": [
+            656.0,
+            530.0
+          ],
+          "length_m": 6.0,
+          "facing": "東"
+        }
+      ],
+      "windows": [
+        {
+          "facing": "東",
+          "centre": [
+            656.0,
+            525.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        },
+        {
+          "facing": "東",
+          "centre": [
+            656.0,
+            528.5
+          ],
+          "width_m": 1.6,
+          "orient": "v",
+          "type": "窓",
+          "sill_m": 0.75
+        },
+        {
+          "facing": "南",
+          "centre": [
+            653.5,
+            524.0
+          ],
+          "width_m": 1.6,
+          "orient": "h",
+          "type": "窓",
+          "sill_m": 0.75
+        }
+      ],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.kitchen",
+      "short_id": "R.kitchen",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "kitchen",
+      "name": "キッチン",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          640,
+          530,
+          644.2,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 14.28,
+      "area_inner_m2": 12.67,
+      "wall_deduction_m2": 1.61,
+      "min_clear_dim_m": [
+        3.25
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [
+        {
+          "a": [
+            640.0,
+            530.0
+          ],
+          "b": [
+            642.0,
+            530.0
+          ],
+          "length_m": 2.0,
+          "facing": "南"
+        }
+      ],
+      "windows": [
+        {
+          "facing": "南",
+          "centre": [
+            641.0,
+            530.0
+          ],
+          "width_m": 1.2,
+          "orient": "h",
+          "type": "窓",
+          "sill_m": 0.75
+        }
+      ],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.pantry",
+      "short_id": "R.pantry",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "storage",
+      "name": "パントリー",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          640,
+          533.4,
+          642.8,
+          536
+        ]
+      ],
+      "area_centreline_m2": 7.28,
+      "area_inner_m2": 6.24,
+      "wall_deduction_m2": 1.04,
+      "min_clear_dim_m": [
+        2.4
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.entry",
+      "short_id": "R.entry",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "entry",
+      "name": "玄関ホール",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          642.8,
+          533.4,
+          646.2,
+          536
+        ],
+        [
+          644.2,
+          530,
+          645.8,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 14.28,
+      "area_inner_m2": 12.74,
+      "wall_deduction_m2": 1.54,
+      "min_clear_dim_m": [
+        2.48,
+        1.45
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.wc",
+      "short_id": "R.wc",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "guest_wc",
+      "name": "ゲスト用トイレ",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          646.2,
+          533.4,
+          648.2,
+          536
+        ]
+      ],
+      "area_centreline_m2": 5.2,
+      "area_inner_m2": 4.44,
+      "wall_deduction_m2": 0.76,
+      "min_clear_dim_m": [
+        1.85
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.study",
+      "short_id": "R.study",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "study",
+      "name": "書斎",
+      "zone_class": "パブリック",
+      "rects": [
+        [
+          645.8,
+          530,
+          649.6,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 12.92,
+      "area_inner_m2": 11.86,
+      "wall_deduction_m2": 1.06,
+      "min_clear_dim_m": [
+        3.25
+      ],
+      "target_m2": [
+        12,
+        15
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.wardrobe",
+      "short_id": "R.wardrobe",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "wardrobe",
+      "name": "衣装室",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          649.6,
+          530,
+          653.4,
+          533.4
+        ]
+      ],
+      "area_centreline_m2": 12.92,
+      "area_inner_m2": 11.86,
+      "wall_deduction_m2": 1.06,
+      "min_clear_dim_m": [
+        3.25
+      ],
+      "target_m2": [
+        12,
+        15
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.storage",
+      "short_id": "R.storage",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "storage",
+      "name": "収納(リネン・旅行鞄)",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          648.2,
+          533.4,
+          651,
+          536
+        ]
+      ],
+      "area_centreline_m2": 7.28,
+      "area_inner_m2": 6.36,
+      "wall_deduction_m2": 0.92,
+      "min_clear_dim_m": [
+        2.4
+      ],
+      "target_m2": null,
+      "target_ok": null,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    },
+    {
+      "id": "wing_e.3F.suite_R.bath",
+      "short_id": "R.bath",
+      "parent_zone": "wing_e.3F.suite_R",
+      "suite": "R",
+      "kind": "bath",
+      "name": "主寝室専用浴室",
+      "zone_class": "プライベート",
+      "rects": [
+        [
+          653.4,
+          530,
+          656,
+          533.4
+        ],
+        [
+          651,
+          533.4,
+          656,
+          536
+        ]
+      ],
+      "area_centreline_m2": 21.84,
+      "area_inner_m2": 19.69,
+      "wall_deduction_m2": 2.15,
+      "min_clear_dim_m": [
+        2.4,
+        2.48
+      ],
+      "target_m2": [
+        18,
+        22
+      ],
+      "target_ok": true,
+      "target_note": null,
+      "exterior_edges": [],
+      "windows": [],
+      "status": "仮案(Stage2c 第1便)"
+    }
+  ],
+  "parentZoneRects": [
+    [
+      642,
+      524,
+      656,
+      530
+    ],
+    [
+      640,
+      530,
+      656,
+      536
+    ]
+  ],
+  "wallAssumption": {
+    "exterior_m": 0.5,
+    "between_zones_m": 0.25,
+    "internal_partition_m": 0.15,
+    "rule": "壁芯から各壁厚の半分を両側へ控除して内法面積・有効寸法を計算。構造・遮音・防火の検討による値ではない(仮定)"
+  },
+  "doors": [
+    {
+      "id": "R_ent",
+      "at": [
+        644,
+        536
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.p_cor",
+        "wing_e.3F.suite_R.entry"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.9,
+      "swing_into": "wing_e.3F.suite_R.entry",
+      "auth": "なし",
+      "source": "Stage2b_r1(変更なし)",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.74,
+          1.74
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_hall_living",
+      "at": [
+        645.0,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.entry",
+        "wing_e.3F.suite_R.living"
+      ],
+      "kind": "arch",
+      "clear_width_m": 1.3,
+      "swing_into": null,
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.15,
+          0.15
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": null
+      }
+    },
+    {
+      "id": "R_wc",
+      "at": [
+        646.2,
+        534.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.entry",
+        "wing_e.3F.suite_R.wc"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.wc",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.9,
+          0.89
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_kitchen",
+      "at": [
+        643.1,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.living",
+        "wing_e.3F.suite_R.kitchen"
+      ],
+      "kind": "arch",
+      "clear_width_m": 1.8,
+      "swing_into": null,
+      "auth": "なし",
+      "note": "アーチ+腰壁でセミオープン",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.2,
+          0.19
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": null
+      }
+    },
+    {
+      "id": "R_pantry",
+      "at": [
+        641.4,
+        533.4
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.kitchen",
+        "wing_e.3F.suite_R.pantry"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.pantry",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.0,
+          1.0
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_study",
+      "at": [
+        647.7,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.living",
+        "wing_e.3F.suite_R.study"
+      ],
+      "kind": "double",
+      "clear_width_m": 1.5,
+      "swing_into": "wing_e.3F.suite_R.study",
+      "auth": "なし",
+      "finish": "装飾ガラス入り両開き扉+上部欄間ガラス",
+      "note": "外窓なし。原作者決定B2=案A(2026-11-17):現状維持+欄間ガラスでリビングから間接採光。自然採光の十分性は未検証",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.15,
+          1.14
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ph",
+      "at": [
+        649.6,
+        528.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.living",
+        "wing_e.3F.suite_R.ph"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.9,
+      "swing_into": "wing_e.3F.suite_R.ph",
+      "auth": "なし",
+      "note": "リビング側からプライベートゾーンへ",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.85,
+          0.84
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ph_br",
+      "at": [
+        651,
+        528.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.ph",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.9,
+      "swing_into": "wing_e.3F.suite_R.bedroom",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.85,
+          0.84
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ph_wr",
+      "at": [
+        650.3,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.ph",
+        "wing_e.3F.suite_R.wardrobe"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.85,
+      "swing_into": "wing_e.3F.suite_R.wardrobe",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.27,
+          0.27
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_closet",
+      "at": [
+        650.3,
+        527.4
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.ph",
+        "wing_e.3F.suite_R.closet"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.closet",
+      "auth": "なし",
+      "note": "第2便で寝室側から私室ホール側へ移設(寝室のベッド配置のため)",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.29,
+          0.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_wr_br",
+      "at": [
+        652.2,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bedroom",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.8,
+          0.79
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ba_br",
+      "at": [
+        654.7,
+        530
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.bath",
+        "wing_e.3F.suite_R.bedroom"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bath",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.9,
+          0.89
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_ba_wr",
+      "at": [
+        653.4,
+        531.7
+      ],
+      "orient": "v",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.bath"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.bath",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          1.3,
+          1.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    },
+    {
+      "id": "R_storage",
+      "at": [
+        650.3,
+        533.4
+      ],
+      "orient": "h",
+      "between": [
+        "wing_e.3F.suite_R.wardrobe",
+        "wing_e.3F.suite_R.storage"
+      ],
+      "kind": "door",
+      "clear_width_m": 0.8,
+      "swing_into": "wing_e.3F.suite_R.storage",
+      "auth": "なし",
+      "check": {
+        "on_shared_wall": true,
+        "end_margins_m": [
+          0.29,
+          0.29
+        ],
+        "frame_margin_ok": true,
+        "leaf_swing_inside_room": true
+      }
+    }
+  ],
+  "furniture": [
+    {
+      "room": "R.entry",
+      "id": "R.e.console",
+      "name": "コンソール+姿見",
+      "rect": [
+        642.875,
+        534.0,
+        643.225,
+        535.0
+      ],
+      "kind": "家具",
+      "clear": [
+        [
+          643.225,
+          534.0,
+          643.7,
+          535.0
+        ]
+      ],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.entry",
+      "id": "R.e.closet",
+      "name": "造り付けコート収納",
+      "rect": [
+        645.525,
+        533.475,
+        646.125,
+        534.2
+      ],
+      "kind": "造作",
+      "clear": [
+        [
+          644.8,
+          533.475,
+          645.525,
+          534.2
+        ]
+      ],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.wc",
+      "id": "R.wc.toilet",
+      "name": "便器",
+      "rect": [
+        647.4,
+        535.125,
+        647.85,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          647.25,
+          534.525,
+          648.0,
+          535.125
+        ]
+      ],
+      "h": 0.4,
+      "note": ""
+    },
+    {
+      "room": "R.wc",
+      "id": "R.wc.basin",
+      "name": "手洗い器",
+      "rect": [
+        647.825,
+        533.6,
+        648.125,
+        534.1
+      ],
+      "kind": "設備",
+      "clear": [],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.counter_w",
+      "name": "調理台(西、シンク)",
+      "rect": [
+        640.125,
+        530.9,
+        640.775,
+        533.325
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          640.775,
+          530.9,
+          641.675,
+          533.325
+        ]
+      ],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.counter_s",
+      "name": "調理台(南、窓下)",
+      "rect": [
+        640.125,
+        530.25,
+        642.1,
+        530.9
+      ],
+      "kind": "設備",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.counter_n",
+      "name": "収納カウンター(北)",
+      "rect": [
+        641.9,
+        532.675,
+        643.4,
+        533.325
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          641.9,
+          531.775,
+          643.4,
+          532.675
+        ]
+      ],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.kitchen",
+      "id": "R.k.fridge",
+      "name": "冷蔵庫",
+      "rect": [
+        643.425,
+        532.625,
+        644.125,
+        533.325
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          643.425,
+          531.925,
+          644.125,
+          532.625
+        ]
+      ],
+      "h": 1.9,
+      "note": ""
+    },
+    {
+      "room": "R.pantry",
+      "id": "R.p.shelf",
+      "name": "棚",
+      "rect": [
+        640.125,
+        535.475,
+        642.725,
+        535.875
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.mantel",
+      "name": "魔法式暖炉(マントルピース)",
+      "rect": [
+        649.125,
+        525.3,
+        649.525,
+        526.9
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 1.2,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.hearth",
+      "name": "炉前(ハース)",
+      "rect": [
+        648.725,
+        525.5,
+        649.125,
+        526.7
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 0.05,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.ctable",
+      "name": "ローテーブル",
+      "rect": [
+        647.75,
+        525.55,
+        648.25,
+        526.65
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.45,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.sofa",
+      "name": "大型ソファ(3人掛け2.2m)",
+      "rect": [
+        646.6,
+        525.0,
+        647.5,
+        527.2
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.8,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.seat",
+      "name": "造り付けウィンドウシート(3.6m)",
+      "rect": [
+        644.0,
+        524.25,
+        647.6,
+        524.8
+      ],
+      "kind": "造作",
+      "clear": [
+        [
+          644.0,
+          524.8,
+          646.4,
+          525.4
+        ]
+      ],
+      "h": 0.45,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.dtable",
+      "name": "食卓(6人、1.6×0.9)",
+      "rect": [
+        643.2,
+        527.4,
+        644.8,
+        528.3
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.75,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_s",
+      "name": "椅子(南側)",
+      "rect": [
+        643.3,
+        526.8,
+        644.7,
+        527.4
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_n",
+      "name": "椅子(北側)",
+      "rect": [
+        643.3,
+        528.3,
+        644.7,
+        528.9
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_w",
+      "name": "椅子(西端)",
+      "rect": [
+        642.6,
+        527.5,
+        643.2,
+        528.2
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.chairs_e",
+      "name": "椅子(東端)",
+      "rect": [
+        644.8,
+        527.5,
+        645.4,
+        528.2
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.living",
+      "id": "R.l.arm",
+      "name": "アームチェア",
+      "rect": [
+        642.45,
+        524.95,
+        643.3,
+        525.8
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.closet",
+      "id": "R.c.hang",
+      "name": "収納(ハンガー・棚)",
+      "rect": [
+        649.675,
+        524.25,
+        650.925,
+        526.0
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.desk",
+      "name": "大机(1.6×0.75)",
+      "rect": [
+        646.5,
+        532.575,
+        648.1,
+        533.325
+      ],
+      "kind": "家具",
+      "clear": [
+        [
+          646.9,
+          531.825,
+          647.7,
+          532.575
+        ]
+      ],
+      "h": 0.75,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.books",
+      "name": "本棚(東壁2.7m)",
+      "rect": [
+        649.175,
+        530.6,
+        649.525,
+        533.325
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.magic",
+      "name": "魔法研究用収納",
+      "rect": [
+        645.875,
+        530.9,
+        646.375,
+        532.1
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.study",
+      "id": "R.s.read",
+      "name": "読書椅子+小卓",
+      "rect": [
+        648.25,
+        530.9,
+        649.1,
+        531.75
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.store_w",
+      "name": "収納(西壁)",
+      "rect": [
+        649.675,
+        531.0,
+        650.275,
+        532.4
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.store_n",
+      "name": "収納(北壁)",
+      "rect": [
+        651.0,
+        532.725,
+        653.325,
+        533.325
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.4,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.island",
+      "name": "小型アイランド収納(1.0×0.5)",
+      "rect": [
+        651.2,
+        531.3,
+        652.2,
+        531.8
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.wardrobe",
+      "id": "R.w.mirror",
+      "name": "全身鏡(東壁)",
+      "rect": [
+        653.275,
+        530.2,
+        653.325,
+        531.2
+      ],
+      "kind": "造作",
+      "clear": [
+        [
+          652.55,
+          530.2,
+          653.275,
+          531.2
+        ]
+      ],
+      "h": 1.9,
+      "note": ""
+    },
+    {
+      "room": "R.storage",
+      "id": "R.st.shelf",
+      "name": "棚(リネン・旅行鞄)",
+      "rect": [
+        648.275,
+        535.275,
+        650.925,
+        535.875
+      ],
+      "kind": "造作",
+      "clear": [],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.tub",
+      "name": "大型浴槽(1.9×0.9)",
+      "rect": [
+        651.2,
+        534.975,
+        653.1,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          651.2,
+          534.275,
+          653.1,
+          534.975
+        ]
+      ],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.shower",
+      "name": "独立シャワー(1.2×1.0)",
+      "rect": [
+        654.675,
+        534.875,
+        655.875,
+        535.875
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          654.675,
+          534.15,
+          655.875,
+          534.875
+        ]
+      ],
+      "h": 2.2,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.vanity",
+      "name": "ダブル洗面台(1.6×0.6)",
+      "rect": [
+        655.275,
+        531.0,
+        655.875,
+        532.6
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          654.575,
+          531.0,
+          655.275,
+          532.6
+        ]
+      ],
+      "h": 0.85,
+      "note": ""
+    },
+    {
+      "room": "R.bath",
+      "id": "R.b.toilet",
+      "name": "便器",
+      "rect": [
+        651.075,
+        533.55,
+        651.825,
+        534.0
+      ],
+      "kind": "設備",
+      "clear": [
+        [
+          651.825,
+          533.5,
+          652.425,
+          534.05
+        ]
+      ],
+      "h": 0.4,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.bed",
+      "name": "キングベッド",
+      "rect": [
+        651.075,
+        525.6,
+        653.225,
+        527.55
+      ],
+      "kind": "家具",
+      "clear": [
+        [
+          653.225,
+          525.6,
+          653.9,
+          527.55
+        ]
+      ],
+      "h": 0.55,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.st1",
+      "name": "サイドテーブル",
+      "rect": [
+        651.075,
+        525.1,
+        651.525,
+        525.6
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.st2",
+      "name": "サイドテーブル",
+      "rect": [
+        651.075,
+        527.55,
+        651.525,
+        528.05
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.6,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.chair",
+      "name": "椅子(東の窓辺)",
+      "rect": [
+        654.9,
+        527.0,
+        655.7,
+        527.8
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.9,
+      "note": ""
+    },
+    {
+      "room": "R.bedroom",
+      "id": "R.r.dresser",
+      "name": "ドレッサー",
+      "rect": [
+        654.2,
+        524.25,
+        655.4,
+        524.75
+      ],
+      "kind": "家具",
+      "clear": [],
+      "h": 0.8,
+      "note": ""
+    }
+  ],
+  "referenceChecks": {
+    "R.living": {
+      "area_inner_m2": 41.29,
+      "furniture_m2": 10.31,
+      "free_floor_m2": 30.98,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.05,
+        "points": [
+          "R_hall_living",
+          "R_kitchen",
+          "R_study",
+          "R_ph",
+          "目標",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [],
+      "approach": [
+        {
+          "door": "R_hall_living",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_kitchen",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_study",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ph",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.ph": {
+      "area_inner_m2": 3.06,
+      "furniture_m2": 0.0,
+      "free_floor_m2": 3.06,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.25,
+        "points": [
+          "R_ph",
+          "R_ph_br",
+          "R_ph_wr",
+          "R_closet"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ph",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ph",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_ph_br",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_ph_wr",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_closet",
+          "blocked_m2": 0
+        }
+      ]
+    },
+    "R.closet": {
+      "area_inner_m2": 3.84,
+      "furniture_m2": 2.19,
+      "free_floor_m2": 1.65,
+      "path": {
+        "required_m": 0,
+        "ok": true,
+        "max_continuous_width_m": 1.25,
+        "points": [
+          "R_closet"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_closet",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_closet",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.bedroom": {
+      "area_inner_m2": 26.53,
+      "furniture_m2": 5.88,
+      "free_floor_m2": 20.65,
+      "path": {
+        "required_m": 0.75,
+        "ok": true,
+        "max_continuous_width_m": 0.94,
+        "points": [
+          "R_ph_br",
+          "R_wr_br",
+          "R_ba_br",
+          "目標",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ph_br",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        },
+        {
+          "door": "R_wr_br",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ph_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_wr_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ba_br",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.kitchen": {
+      "area_inner_m2": 12.67,
+      "furniture_m2": 4.33,
+      "free_floor_m2": 8.34,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.17,
+        "points": [
+          "R_kitchen",
+          "R_pantry",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [],
+      "approach": [
+        {
+          "door": "R_kitchen",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_pantry",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.pantry": {
+      "area_inner_m2": 6.24,
+      "furniture_m2": 1.04,
+      "free_floor_m2": 5.2,
+      "path": {
+        "required_m": 0,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_pantry"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_pantry",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_pantry",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.entry": {
+      "area_inner_m2": 12.74,
+      "furniture_m2": 0.79,
+      "free_floor_m2": 11.95,
+      "path": {
+        "required_m": 0.9,
+        "ok": true,
+        "max_continuous_width_m": 1.25,
+        "points": [
+          "R_ent",
+          "R_hall_living",
+          "R_wc"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ent",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ent",
+          "blocked_m2": 0
+        },
+        {
+          "door": "R_hall_living",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_wc",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.wc": {
+      "area_inner_m2": 4.44,
+      "furniture_m2": 0.49,
+      "free_floor_m2": 3.95,
+      "path": {
+        "required_m": 0.6,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_wc"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_wc",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_wc",
+          "blocked_m2": 0
+        }
+      ]
+    },
+    "R.study": {
+      "area_inner_m2": 11.86,
+      "furniture_m2": 3.48,
+      "free_floor_m2": 8.38,
+      "path": {
+        "required_m": 0.75,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_study",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_study",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_study",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.wardrobe": {
+      "area_inner_m2": 11.86,
+      "furniture_m2": 2.79,
+      "free_floor_m2": 9.07,
+      "path": {
+        "required_m": 0.75,
+        "ok": true,
+        "max_continuous_width_m": 0.8,
+        "points": [
+          "R_ph_wr",
+          "R_wr_br",
+          "R_ba_wr",
+          "R_storage",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ph_wr",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ph_wr",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_wr_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ba_wr",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_storage",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.storage": {
+      "area_inner_m2": 6.36,
+      "furniture_m2": 1.59,
+      "free_floor_m2": 4.77,
+      "path": {
+        "required_m": 0,
+        "ok": true,
+        "max_continuous_width_m": 1.6,
+        "points": [
+          "R_storage"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_storage",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_storage",
+          "blocked_m2": 0.0
+        }
+      ]
+    },
+    "R.bath": {
+      "area_inner_m2": 19.69,
+      "furniture_m2": 4.21,
+      "free_floor_m2": 15.48,
+      "path": {
+        "required_m": 0.7,
+        "ok": true,
+        "max_continuous_width_m": 1.5,
+        "points": [
+          "R_ba_br",
+          "R_ba_wr",
+          "目標",
+          "目標",
+          "目標",
+          "目標"
+        ]
+      },
+      "swings": [
+        {
+          "door": "R_ba_br",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        },
+        {
+          "door": "R_ba_wr",
+          "furniture_hit_m2": 0.0,
+          "overlaps_use_space_of": []
+        }
+      ],
+      "approach": [
+        {
+          "door": "R_ba_br",
+          "blocked_m2": 0.0
+        },
+        {
+          "door": "R_ba_wr",
+          "blocked_m2": 0.0
+        }
+      ]
+    }
+  },
+  "display": {
+    "originXY": [
+      640,
+      524
+    ],
+    "floorLevelM": 9.5,
+    "floorElevationM": 75.5,
+    "sectionHeightM": 0.85,
+    "heights": {
+      "R.living": {
+        "m": 3.4,
+        "basis": "報告書の仮定"
+      },
+      "R.ph": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.closet": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.bedroom": {
+        "m": 3.3,
+        "basis": "報告書の仮定"
+      },
+      "R.kitchen": {
+        "m": 2.7,
+        "basis": "報告書の水回りの値をキッチンに適用"
+      },
+      "R.pantry": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.entry": {
+        "m": 3,
+        "basis": "報告書の仮定"
+      },
+      "R.wc": {
+        "m": 2.7,
+        "basis": "報告書の仮定"
+      },
+      "R.study": {
+        "m": 3,
+        "basis": "報告書の仮定"
+      },
+      "R.wardrobe": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.storage": {
+        "m": 2.7,
+        "basis": "ビューアの表示用仮設定"
+      },
+      "R.bath": {
+        "m": 2.7,
+        "basis": "報告書の仮定"
+      }
+    },
+    "doorHeightsM": {
+      "R_ent": 2.1,
+      "R_hall_living": 2.1,
+      "R_wc": 2.1,
+      "R_kitchen": 2.1,
+      "R_pantry": 2.1,
+      "R_study": 2.1,
+      "R_ph": 2.1,
+      "R_ph_br": 2.1,
+      "R_ph_wr": 2.1,
+      "R_closet": 2.1,
+      "R_wr_br": 2.1,
+      "R_ba_br": 2.1,
+      "R_ba_wr": 2.1,
+      "R_storage": 2.1
+    },
+    "windowHeadM": 2.4,
+    "transoms": [
+      {
+        "id": "R_study-transom",
+        "doorId": "R_study",
+        "name": "書斎入口の上部欄間ガラス",
+        "note": "設置方針のみ確定。幅・高さ・位置の詳細は未確定のため、書斎扉の上に記号で表示。"
+      }
+    ]
+  }
+}</script>
+<script type="module">
+// Plan geometry uses integer millimetres. The rendering transform uses metres.
+const mm = value => Math.round(value * 1000);
+const meters = value => value / 1000;
+const inside = (x, y, [west, south, east, north]) =>
+  x >= west && x < east && y >= south && y < north;
+const unionContains = (rects, x, y) => rects.some(rect => inside(x, y, rect));
+const sorted = values => [...new Set(values)].sort((a, b) => a - b);
+const intervals = values => values.slice(1).map((value, i) => [values[i], value]);
+const rectArea = ([a,b,c,d]) => (c - a) * (d - b);
 
+function partition(rectangles, accept) {
+  const xs = sorted(rectangles.flatMap(rect => [rect[0], rect[2]]));
+  const ys = sorted(rectangles.flatMap(rect => [rect[1], rect[3]]));
+  return intervals(ys).flatMap(([y0,y1]) => intervals(xs)
+    .filter(([x0,x1]) => accept((x0+x1)/2, (y0+y1)/2))
+    .map(([x0,x1]) => [x0,y0,x1,y1]));
+}
+
+function perimeter(room, parent, exterior, thickness) {
+  const edges = [];
+  for (const orient of ['h', 'v']) {
+    const axis = orient === 'h' ? 0 : 1;
+    const cross = 1 - axis;
+    const lines = sorted(room.flatMap(r => [r[cross], r[cross + 2]]));
+    const cuts = sorted([...room, ...parent, ...exterior]
+      .flatMap(r => [r[axis],r[axis + 2]]));
+    for (const line of lines) {
+      for (const [start,end] of intervals(cuts)) {
+        const point = offset => orient === 'h'
+          ? [(start+end)/2, line+offset] : [line+offset, (start+end)/2];
+        const positive = unionContains(room, ...point(0.25));
+        if (positive === unionContains(room, ...point(-0.25))) continue;
+        const inward = positive ? 1 : -1;
+        const outer = exterior.some(r => r[cross] === line && start >= r[axis] && end <= r[axis+2]);
+        const kind = outer ? 'exterior' :
+          unionContains(parent, ...point(-inward*0.25)) ? 'internal_partition' : 'between_zones';
+        const previous = edges.at(-1);
+        if (previous && previous.orient === orient && previous.line === line &&
+            previous.end === start && previous.inward === inward && previous.kind === kind) {
+          previous.end = end;
+          continue;
+        }
+        edges.push({orient, line, start, end, inward, kind, half: mm(thickness[kind + '_m'])/2});
+      }
+    }
+  }
+  return edges.map((edge,i) => ({...edge, id: 'wall-' + (i+1)}));
+}
+function strip(edge, start, end, low, high) {
+  return edge.orient === 'h' ? [start,edge.line+low,end,edge.line+high]
+    : [edge.line+low,start,edge.line+high,end];
+}
+
+const area = rects => rects.reduce((sum,rect) => sum+rectArea(rect),0)/1e6;
+const toExterior = e => [...e.a,...e.b].map(mm);
+const edgeAxis = orient => orient === 'h' ? 0 : 1;
+
+function mergeWalls(rooms) {
+  const byLine = new Map();
+  for (const room of rooms) for (const edge of room.edges) {
+    const key = edge.orient+':'+edge.line;
+    if (!byLine.has(key)) byLine.set(key,[]);
+    byLine.get(key).push({...edge, room});
+  }
+  const walls = [];
+  for (const edges of byLine.values()) {
+    for (const [start,end] of intervals(sorted(edges.flatMap(e=>[e.start,e.end])))) {
+      const covering = edges.filter(e=>e.start<=start && e.end>=end);
+      if (!covering.length) continue;
+      const {orient,line,kind,half} = covering[0];
+      if (covering.some(e=>e.kind!==kind || e.half!==half) ||
+          covering.length > 2 || (covering.length===2 && covering[0].inward===covering[1].inward)) {
+        throw new Error('壁の境界分類が一致しません '+orient+' '+line+' '+start);
+      }
+      const roomIds = covering.map(e=>e.room.id).sort();
+      const wall = {id:'wall:'+orient+':'+line+':'+start,orient,line,kind,half,start,end,
+        height:Math.max(...covering.map(e=>e.room.height)),roomIds,sides:covering};
+      walls.push(wall);
+    }
+  }
+  return walls;
+}
+
+function openings(data, rooms, walls) {
+  const apertures = [
+    ...data.doors.map(d=>({...d,type:'door',xy:d.at,width:d.clear_width_m,bottom:0,
+      top:data.display.doorHeightsM[d.id],roomIds:d.between.filter(id=>rooms.some(r=>r.id===id))})),
+    ...rooms.flatMap(room=>room.source.windows.map((w,i)=>({...w,windowType:w.type,type:'window',
+      id:w.id||room.source.short_id+'.window.'+(i+1),xy:w.centre,width:w.width_m,
+      bottom:w.sill_m,top:w.head_m??data.display.windowHeadM,roomIds:[room.id]})))
+  ];
+  for (const aperture of apertures) {
+    const axis = edgeAxis(aperture.orient);
+    const middle = mm(aperture.xy[axis]);
+    aperture.start = middle-mm(aperture.width)/2;
+    aperture.end = middle+mm(aperture.width)/2;
+    const spans = walls.filter(w=>w.orient===aperture.orient && w.line===mm(aperture.xy[1-axis]) &&
+      w.start<aperture.end && w.end>aperture.start);
+    if (!spans.length || !Number.isFinite(aperture.top) || aperture.bottom>=aperture.top ||
+        spans.some(w=>w.height<aperture.top || w.half!==spans[0].half ||
+          w.roomIds.join()!==[...aperture.roomIds].sort().join()) ||
+        spans.reduce((sum,w)=>sum+Math.min(w.end,aperture.end)-Math.max(w.start,aperture.start),0)!==
+          aperture.end-aperture.start) throw new Error('開口境界を照合できません: '+aperture.id);
+    aperture.rect = strip(spans[0],aperture.start,aperture.end,-spans[0].half,spans[0].half);
+  }
+  return apertures;
+}
+
+function wallSolids(walls, apertures, parent) {
+  const volumes = walls.map(w=>({wall:w,rect:strip(w,w.start,w.end,-w.half,w.half)}));
+  // Close convex corners of the outside perimeter. Shared partitions and T-junctions already intersect.
+  for (const h of walls.filter(w=>w.orient==='h' && w.sides.length===1)) {
+    for (const v of walls.filter(w=>w.orient==='v' && w.sides.length===1)) {
+      if (![h.start,h.end].includes(v.line) || ![v.start,v.end].includes(h.line)) continue;
+      const x=v.line,y=h.line;
+      const quadrants=[-1,1].flatMap(dx=>[-1,1].map(dy=>unionContains(parent,x+dx,y+dy)));
+      if (quadrants.filter(Boolean).length!==1) continue;
+      const ax=x-v.sides[0].inward*v.half, ay=y-h.sides[0].inward*h.half;
+      const wall=h.height<=v.height?h:v;
+      volumes.push({wall,rect:[Math.min(x,ax),Math.min(y,ay),Math.max(x,ax),Math.max(y,ay)]});
+    }
+  }
+  const heights=sorted([0,...walls.map(w=>w.height),...apertures.flatMap(o=>[o.bottom,o.top])]);
+  const boxes=[];
+  for (const [lo,hi] of intervals(heights)) {
+    const solid=volumes.filter(v=>v.wall.height>=hi);
+    const cuts=apertures.filter(o=>lo>=o.bottom && hi<=o.top).map(o=>o.rect);
+    const rects=[...solid.map(v=>v.rect),...cuts];
+    const xs=intervals(sorted(rects.flatMap(r=>[r[0],r[2]])));
+    const ys=intervals(sorted(rects.flatMap(r=>[r[1],r[3]])));
+    for (const [y0,y1] of ys) {
+      let previous;
+      for (const [x0,x1] of xs) {
+        const x=(x0+x1)/2,y=(y0+y1)/2;
+        const current=unionContains(cuts,x,y)?null:solid.find(v=>inside(x,y,v.rect));
+        if (!current) {previous=null;continue;}
+        if (previous?.id===current.wall.id) {
+          previous.rect[2]=x1;
+        } else {
+          previous={id:current.wall.id,rect:[x0,y0,x1,y1],lo,hi};
+          boxes.push(previous);
+        }
+      }
+    }
+  }
+  return boxes;
+}
+
+function buildSuite(data) {
+  const parent=data.parentZoneRects.map(r=>r.map(mm));
+  const rooms=data.rooms.map(source=>{
+    const id=source.id;
+    const rects=source.rects.map(r=>r.map(mm));
+    const edges=perimeter(rects,parent,source.exterior_edges.map(toExterior),data.wallAssumption);
+    const strips=edges.map(e=>strip(e,e.start,e.end,Math.min(0,e.inward*e.half),Math.max(0,e.inward*e.half)));
+    const floor=partition([...rects,...strips],(x,y)=>unionContains(rects,x,y) && !unionContains(strips,x,y));
+    return {source,id,rects,edges,floor,centerArea:area(rects),innerArea:area(floor),
+      height:data.display.heights[source.short_id].m};
+  });
+  const walls=mergeWalls(rooms);
+  const apertures=openings(data,rooms,walls);
+  const boxes=wallSolids(walls,apertures,parent);
+  const equipment=data.furniture.map(source=>({source,id:source.id,roomId:rooms.find(r=>r.source.short_id===source.room).id,
+    rect:source.rect.map(mm),lo:0,hi:source.h,clear:source.clear.map(r=>r.map(mm))}));
+  const origin=data.display.originXY.map(mm);
+  const worldPoint=(x,y,height)=>[meters(x-origin[0]),height,meters(origin[1]-y)];
+  const worldBox=({rect:[a,b,c,d],lo,hi})=>[worldPoint(a,d,lo),worldPoint(c,b,hi)];
+  return {rooms,walls,apertures,boxes,equipment,parent,worldPoint,worldBox};
+}
+
+function bounds(rects) {
+  return [Math.min(...rects.map(r=>r[0])),Math.min(...rects.map(r=>r[1])),
+    Math.max(...rects.map(r=>r[2])),Math.max(...rects.map(r=>r[3]))];
+}
+
+function standingPoint(room,equipment) {
+  const base=bounds(room.floor);
+  const obstructions=equipment.filter(e=>e.roomId===room.id).map(e=>e.rect);
+  let best=-Infinity,position;
+  for (let y=base[1]+25;y<base[3];y+=50) for (let x=base[0]+25;x<base[2];x+=50) {
+    if (!unionContains(room.floor,x,y) || unionContains(obstructions,x,y)) continue;
+    const margin=Math.min(...room.edges.map(w=>{
+      const a=w.orient==='h'?x:y,b=w.orient==='h'?y:x;
+      return Math.hypot(Math.max(w.start-a,a-w.end,0),b-w.line)-w.half;
+    }),...obstructions.map(([a,b,c,d])=>Math.hypot(Math.max(a-x,x-c,0),Math.max(b-y,y-d,0))));
+    if (margin>best) {best=margin;position=[x,y];}
+  }
+  if (position) return position;
+  const patch=room.floor.reduce((largest,r)=>rectArea(r)>rectArea(largest)?r:largest);
+  return [(patch[0]+patch[2])/2,(patch[1]+patch[3])/2];
+}
+const sub = (a,b) => a.map((n,i) => n-b[i]);
+const add = (a,b) => a.map((n,i) => n+b[i]);
+const times = (a,n) => a.map(x => x*n);
+const dot = (a,b) => a.reduce((sum,n,i) => sum+n*b[i],0);
+const cross = (a,b) => [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const unit = a => times(a,1/Math.hypot(...a));
+const UP = [0,1,0];
+
+function cameraFrame(camera, width, height) {
+  const {mode,yaw,pitch,zoom,target} = camera;
+  const direction = [Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),Math.cos(yaw)*Math.cos(pitch)];
+  let eye, forward, right, up;
+  if (mode === 'inside') {
+    eye = target;
+    forward = direction;
+    right = unit(cross(forward,UP));
+    up = cross(right,forward);
+  } else if (mode === 'plan') {
+    eye = add(target,[0,14,0]);
+    forward = [0,-1,0];
+    right = [1,0,0];
+    up = [0,0,-1];
+  } else {
+    eye = add(target,times(direction,13));
+    forward = times(direction,-1);
+    right = unit(cross(forward, UP));
+    up = cross(right,forward);
+  }
+  const aspect = width/height;
+  const perspective = mode === 'inside';
+  const fittedSpan = Math.max(camera.spanY, camera.spanX/aspect)/zoom;
+  const tangent = Math.tan((0.52/zoom));
+  const sx = perspective ? 1/(aspect*tangent) : 1/(aspect*fittedSpan);
+  const sy = perspective ? 1/tangent : 1/fittedSpan;
+  return {
+    eye,forward,right,up,sx,sy,perspective,
+    project(point) {
+      const delta = sub(point,eye);
+      const depth = dot(forward,delta);
+      const divide = perspective ? depth : 1;
+      return [(dot(right,delta)*sx/divide+1)*width/2,
+        (1-dot(up,delta)*sy/divide)*height/2,depth];
+    },
+    ray(x,y) {
+      const delta = add(times(right,(2*x/width-1)/sx),times(up,(1-2*y/height)/sy));
+      return perspective ? [eye, unit(add(delta,forward))] : [add(eye,delta),forward];
+    }
+  };
+}
+
+function hitBox([start,end],[origin,dir]) {
+  let tmin = 0, tmax = Infinity;
+  for (let i=0;i<3;i++) {
+    if (Math.abs(dir[i]) < 1e-9) {
+      if (origin[i] < start[i] || origin[i] > end[i]) return Infinity;
+      continue;
+    }
+    const a = (start[i]-origin[i])/dir[i], b = (end[i]-origin[i])/dir[i];
+    tmin = Math.max(tmin,Math.min(a,b));
+    tmax = Math.min(tmax,Math.max(a,b));
+    if (tmax < tmin) return Infinity;
+  }
+  return tmin;
+}
+
+const faces = [
+  [[0,3,2,1],.81], [[4,5,6,7],1], [[0,1,5,4],.78],
+  [[1,2,6,5],.63], [[2,3,7,6],.88], [[3,0,4,7],.72],
+];
+const boxEdges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+
+function makeGeometry() {
+  const triangles = [], lines = [];
+  const vertex = (out,p,color) => out.push(...p,...color);
+  function line(a,b,c) {
+    vertex(lines,a,c);
+    vertex(lines,b,c);
+  }
+  function quad(points,color) {
+    for (const id of [0,1,2,0,2,3]) vertex(triangles,points[id],color);
+  }
+  function box([[a,b,c],[d,e,f]], color, edges, wire=false) {
+    const p = [[a,b,c],[d,b,c],[d,b,f],[a,b,f],[a,e,c],[d,e,c],[d,e,f],[a,e,f]];
+    if (!wire) for (const [indices,shade] of faces) quad(indices.map(i=>p[i]),times(color,shade));
+    if (edges) for (const [i,k] of boxEdges) line(p[i],p[k],edges);
+  }
+  return {triangles,lines,line,quad,box};
+}
+
+function createRenderer(canvas) {
+  const gl = canvas.getContext('webgl',{antialias:true,alpha:false});
+  if (!gl) return createCanvasRenderer(canvas);
+  canvas.dataset.renderer = 'webgl';
+  const shader = (type,source) => {
+    const compiled = gl.createShader(type);
+    gl.shaderSource(compiled,source);
+    gl.compileShader(compiled);
+    if (!gl.getShaderParameter(compiled,gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(compiled));
+    return compiled;
+  };
+  const program = gl.createProgram();
+  gl.attachShader(program,shader(gl.VERTEX_SHADER,`
+    attribute vec3 position, color;
+    uniform vec3 eye, right, up, forward;
+    uniform vec2 scale;
+    uniform float perspective;
+    varying vec3 rgb;
+    void main() {
+      vec3 d = position-eye;
+      float z = dot(d,forward);
+      float depth = mix(z/25.0-1.0, (50.05/49.95)*z-5.0/49.95, perspective);
+      gl_Position = vec4(dot(d,right)*scale.x,dot(d,up)*scale.y,depth,mix(1.0,z,perspective));
+      rgb = color;
+    }`));
+  gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`
+    precision mediump float;
+    varying vec3 rgb;
+    void main() { gl_FragColor = vec4(rgb,1.0); }`));
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
+  gl.useProgram(program);
+  gl.enable(gl.DEPTH_TEST);
+  gl.depthFunc(gl.LEQUAL);
+  gl.clearColor(.90,.93,.93,1);
+  const uniforms = Object.fromEntries(['eye','right','up','forward','scale','perspective']
+    .map(key=>[key,gl.getUniformLocation(program,key)]));
+  const position = gl.getAttribLocation(program,'position');
+  const color = gl.getAttribLocation(program,'color');
+  gl.enableVertexAttribArray(position);
+  gl.enableVertexAttribArray(color);
+  const buffers = [gl.createBuffer(),gl.createBuffer()];
+  let uploadedGeometry;
+  function render(frame,geometry) {
+    const ratio = Math.min(window.devicePixelRatio || 1,2);
+    const width = Math.max(1, Math.round(canvas.clientWidth*ratio));
+    const height = Math.max(1, Math.round(canvas.clientHeight*ratio));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    gl.viewport(0,0,width,height);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    for (const key of ['eye','right','up','forward']) gl.uniform3fv(uniforms[key],frame[key]);
+    gl.uniform2f(uniforms.scale,frame.sx,frame.sy);
+    gl.uniform1f(uniforms.perspective,Number(frame.perspective));
+    const layers = [[geometry.triangles,gl.TRIANGLES],[geometry.lines,gl.LINES]];
+    for (const [index,[data,mode]] of layers.entries()) {
+      gl.bindBuffer(gl.ARRAY_BUFFER,buffers[index]);
+      if (uploadedGeometry !== geometry) gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.STATIC_DRAW);
+      gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);
+      gl.vertexAttribPointer(color,3,gl.FLOAT,false,24,12);
+      if (mode === gl.TRIANGLES) {
+        gl.enable(gl.POLYGON_OFFSET_FILL);
+        gl.polygonOffset(1,1);
+      } else gl.disable(gl.POLYGON_OFFSET_FILL);
+      gl.drawArrays(mode,0,data.length/6);
+    }
+    uploadedGeometry = geometry;
+  }
+  return render;
+}
+
+// Real depth-tested software 3D for browsers where WebGL is unavailable.
+function createCanvasRenderer(canvas) {
+  const ctx=canvas.getContext('2d',{alpha:false});
+  if(!ctx) throw new Error('3D表示に必要なCanvasを利用できません。');
+  canvas.dataset.renderer='canvas';
+  let image, pixels, depth;
+  const pack=(r,g,b)=>0xff000000|(Math.round(b*255)<<16)|(Math.round(g*255)<<8)|Math.round(r*255);
+  const background=pack(.90,.93,.93);
+
+  return function render(frame,geometry) {
+    const scale=Math.min(window.devicePixelRatio||1,1.40,1150/canvas.clientWidth,780/canvas.clientHeight);
+    const width=Math.max(1,Math.round(canvas.clientWidth*scale));
+    const height=Math.max(1,Math.round(canvas.clientHeight*scale));
+    if(!image||canvas.width!==width||canvas.height!==height) {
+      canvas.width=width;canvas.height=height;
+      image=ctx.createImageData(width,height);
+      pixels=new Uint32Array(image.data.buffer);
+      depth=new Float32Array(width*height);
+    }
+    pixels.fill(background);
+    depth.fill(-Infinity);
+    const near=frame.perspective?.05:0;
+    function unpack(data,i) {
+      const delta=[data[i]-frame.eye[0],data[i+1]-frame.eye[1],data[i+2]-frame.eye[2]];
+      return [dot(frame.right,delta),dot(frame.up,delta),dot(frame.forward,delta)];
+    }
+    function project([x,y,z]) {
+      const inv=frame.perspective?1/z:1;
+      return [(x*frame.sx*inv+1)*width*.5,(1-y*frame.sy*inv)*height*.5,frame.perspective?inv:-z];
+    }
+    const cut=(a,b)=>{
+      const t=(near-a[2])/(b[2]-a[2]);
+      return [a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1]),near];
+    };
+    function triangle(a,b,c,color) {
+      const dx=b[0]-a[0],dy=b[1]-a[1],ex=c[0]-a[0],ey=c[1]-a[1];
+      const det=dx*ey-dy*ex;
+      if(Math.abs(det)<1e-8)return;
+      const xmin=Math.max(0,Math.floor(Math.min(a[0],b[0],c[0])));
+      const xmax=Math.min(width-1,Math.ceil(Math.max(a[0],b[0],c[0])));
+      const ymin=Math.max(0,Math.floor(Math.min(a[1],b[1],c[1])));
+      const ymax=Math.min(height-1,Math.ceil(Math.max(a[1],b[1],c[1])));
+      const vStep=ey/det,wStep=-dy/det;
+      for(let y=ymin;y<=ymax;y++) {
+        const yy=y+.5-a[1],xx=xmin+.5-a[0];
+        let v=(xx*ey-yy*ex)/det,w=(dx*yy-dy*xx)/det;
+        let idx=y*width+xmin;
+        for(let x=xmin;x<=xmax;x++,idx++,v+=vStep,w+=wStep) {
+          if(v<-.000001||w<-.000001||v+w>1.000001)continue;
+          const z=a[2]+v*(b[2]-a[2])+w*(c[2]-a[2]);
+          if(z>=depth[idx]) { depth[idx]=z;pixels[idx]=color; }
+        }
+      }
+    }
+    const tris=geometry.triangles;
+    for(let i=0;i<tris.length;i+=18) {
+      const vertices=[unpack(tris,i),unpack(tris,i+6),unpack(tris,i+12)];
+      const clipped=[];
+      for(let j=0;j<3;j++) {
+        const a=vertices[(j+2)%3],b=vertices[j];
+        if((a[2]>=near)!==(b[2]>=near))clipped.push(cut(a,b));
+        if(b[2]>=near)clipped.push(b);
+      }
+      if(clipped.length<3)continue;
+      const poly=clipped.map(project),color=pack(tris[i+3],tris[i+4],tris[i+5]);
+      for(let j=1;j+1<poly.length;j++)triangle(poly[0],poly[j],poly[j+1],color);
+    }
+    // Clip each projected segment to the framebuffer before walking its pixels.
+    const lines=geometry.lines;
+    for(let i=0;i<lines.length;i+=12) {
+      let a=unpack(lines,i),b=unpack(lines,i+6);
+      if(a[2]<near&&b[2]<near)continue;
+      if(a[2]<near)a=cut(a,b);
+      if(b[2]<near)b=cut(b,a);
+      a=project(a);b=project(b);
+      const dx=b[0]-a[0],dy=b[1]-a[1],dz=b[2]-a[2];
+      let from=0,to=1,visible=true;
+      for(const [p,d,min,max] of [[a[0],dx,0,width-1],[a[1],dy,0,height-1]]) {
+        if(!d) {if(p<min||p>max)visible=false;continue;}
+        const l=(min-p)/d,r=(max-p)/d;
+        from=Math.max(from,Math.min(l,r));
+        to=Math.min(to,Math.max(l,r));
+      }
+      if(!visible||to<from)continue;
+      const count=Math.max(1,Math.ceil(Math.max(Math.abs(dx),Math.abs(dy))*(to-from)));
+      const color=pack(lines[i+3],lines[i+4],lines[i+5]);
+      for(let j=0;j<=count;j++) {
+        const t=from+(to-from)*j/count;
+        const idx=Math.round(a[1]+dy*t)*width+Math.round(a[0]+dx*t);
+        const z=a[2]+dz*t;
+        const tolerance=frame.perspective?.0012*Math.max(1,z*z):.026;
+        if(z+tolerance>=depth[idx]) { depth[idx]=Math.max(z,depth[idx]);pixels[idx]=color; }
+      }
+    }
+    ctx.putImageData(image,0,0);
+  };
+}
+
+const get=id=>document.getElementById(id);
+const viewport=get('viewport'), canvas=get('scene'), choice=get('object'), roomChoice=get('room'), status=get('loading');
+const clamp=(x,min,max)=>Math.max(min,Math.min(max,x));
+const fmt=(n,digits=3)=>Number(n.toFixed(digits)).toString();
+const pair=p=>'('+p.map(n=>fmt(n)).join(', ')+')';
+const rectMetres=r=>r.map(x=>x/1000);
+const range=([a,b,c,d])=>pair([a,b])+' ～ '+pair([c,d]);
+const size=([a,b,c,d])=>fmt(c-a)+' × '+fmt(d-b);
+const wallKinds={exterior:'外壁',between_zones:'ゾーン境界',internal_partition:'間仕切り'};
+const doorKinds={arch:'扉なし開口',door:'片開き',double:'両開き'};
+const palette={
+  floor:[.96,.97,.94],focusedFloor:[.85,.94,.90],wall:[.79,.86,.84],outer:[.70,.80,.79],
+  edge:[.17,.31,.32],selected:[.25,.69,.59],door:[.92,.78,.50],window:[.47,.74,.86],
+  clear:[.49,.80,.74],fixture:[.78,.72,.62],equipment:[.79,.86,.91],
+};
+
+function showError(message) {
+  status.hidden=false;
+  status.textContent=message;
+}
+
+async function start() {
+  const data=JSON.parse(document.getElementById('suite-data').textContent);
+  const model=buildSuite(data);
+  const rooms=new Map(model.rooms.map(room=>[room.id,room]));
+  const point=model.worldPoint;
+  const name=id=>rooms.get(id)?.source.name ?? (id==='wing_e.3F.p_cor'?'専用廊下（対象外）':id);
+  const objects=new Map();
+  const positions=new Map(model.rooms.map(room=>[room.id,standingPoint(room,model.equipment)]));
+  get('title').textContent=data.suite+'スイート';
+  for (const room of model.rooms) roomChoice.add(new Option(room.source.name,room.id));
+  let render;
+  try { render=createRenderer(canvas);status.hidden=true; } catch (error) { showError(error.message); }
+
+  const groups=new Map();
+  function addObject(id,title,rows,group,{anchor,layer,roomIds=[]}={}) {
+    let optionGroup=groups.get(group);
+    if (!optionGroup) {
+      optionGroup=document.createElement('optgroup');
+      optionGroup.label=group;
+      choice.append(optionGroup);
+      groups.set(group,optionGroup);
+    }
+    optionGroup.append(new Option(layer==='equipment'?title+' ｜ '+name(roomIds[0]):title,id));
+    const item={id,title,rows,anchor,layer,roomIds};
+    objects.set(id,item);
+    if (anchor) {
+      const label=document.createElement('button');
+      label.type='button';
+      label.className='label';
+      label.dataset.object=id;
+      label.dataset.layer=layer;
+      label.textContent=layer==='transom'?'欄間・寸法未定':title;
+      label.hidden=true;
+      label.addEventListener('click',event=>{if(event.detail===0) (layer==='room'?focusRoom:select)(id);});
+      get('labels').append(label);
+      item.label=label;
+    }
+  }
+  const sum=key=>model.rooms.reduce((n,r)=>n+r[key],0);
+  addObject('suite',data.suite+'スイート全体',[
+    ['対象',model.rooms.length+'室 ／ 家具・設備 '+model.equipment.length+'点'],
+    ['壁芯 / 内法',sum('centerArea').toFixed(2)+' / '+sum('innerArea').toFixed(2)+' m²'],
+    ['開口',data.doors.length+'か所 ／ 外窓 '+model.apertures.filter(o=>o.type==='window').length+'か所'],
+    ['座標系','X＝東・Y＝北。表示原点 '+pair(data.display.originXY)+'。'],
+    ['床','3階 +'+fmt(data.display.floorLevelM)+'m（標高 '+fmt(data.display.floorElevationM)+'m）'],
+  ],'全体');
+
+  for (const room of model.rooms) {
+    const src=room.source, height=data.display.heights[src.short_id], check=data.referenceChecks[src.short_id];
+    const associated=model.apertures.filter(o=>o.type==='door' && o.roomIds.includes(room.id));
+    addObject(room.id,src.name,[
+      ['識別子',src.short_id],['壁芯 / 内法',room.centerArea.toFixed(2)+' / '+room.innerArea.toFixed(2)+' m²'],
+      ...src.rects.map((rect,i)=>['壁芯矩形 '+(i+1),range(rect)+' ／ '+size(rect)+' m']),
+      ['高さ',height.m.toFixed(2)+'m（'+height.basis+'）'],
+      ['接続',associated.map(o=>name(o.between.find(id=>id!==room.id))).join(' ／ ') || '—'],
+      ...(check.path.required_m>0?[['元資料の通路幅','必要 '+fmt(check.path.required_m)+'m ／ 最大連続 '+fmt(check.path.max_continuous_width_m)+'m（再計算対象外）']]:[]),
+    ],'部屋',{anchor:point(...positions.get(room.id),.04),layer:'room',roomIds:[room.id]});
+  }
+
+  for (const wall of model.walls) {
+    const {orient,line,start,end,roomIds,kind,half,height}=wall;
+    const xy=orient==='h'?[start,line,end,line]:[line,start,line,end];
+    addObject(wall.id,wallKinds[kind]+' '+pair(rectMetres(xy.slice(0,2))),[
+      ['壁芯両端',range(rectMetres(xy))+' m'],['接する室',roomIds.map(name).join(' ／ ')],
+      ['長さ / 厚み',fmt((end-start)/1000)+' / '+fmt(2*half/1000)+' m（壁厚は元資料の仮定）'],
+      ['表示高さ',height.toFixed(2)+' m'],
+    ],'壁',{roomIds});
+  }
+
+  const openingTitle=o=>o.type==='door'
+    ? (doorKinds[o.kind] || o.kind)+'｜'+o.between.map(name).join(' ↔ ')
+    : '外窓｜'+name(o.roomIds[0])+'・'+o.facing;
+  for (const o of model.apertures) {
+    const isDoor=o.type==='door';
+    const ends=o.orient==='h'?[o.start/1000,o.xy[1],o.end/1000,o.xy[1]]
+      :[o.xy[0],o.start/1000,o.xy[0],o.end/1000];
+    addObject(o.id,openingTitle(o),[
+      ['識別子',o.id],['中心 (X, Y)',pair(o.xy)+' m'],['壁芯両端',range(ends)+' m'],
+      ['有効幅',o.width.toFixed(2)+' m'],
+      isDoor?['表示開口高',o.top.toFixed(2)+'m（暫定）']
+        :['下端 / 上端',o.bottom.toFixed(2)+' / '+o.top.toFixed(2)+' m（上端は暫定）'],
+      ...(o.swing_into?[['開く側',name(o.swing_into)]]:[]),
+      ...(o.auth && o.auth!=='なし'?[['認証',o.auth]]:[]),
+      ...(o.finish?[['元資料の仕様',o.finish]]:[]),
+      ...(!isDoor?[['元資料の仕様',o.windowType || '窓']]:[]),
+    ],isDoor?'扉・通路開口':'外窓',{layer:'opening',roomIds:o.roomIds});
+  }
+  for (const item of data.display.transoms) {
+    const door=model.apertures.find(o=>o.id===item.doorId);
+    addObject(item.id,item.name,[
+      ['関連開口',door.id],['設計資料',item.note],['表示方法','該当扉の位置に「欄間」の記号を表示。寸法は未確定。'],
+    ],'欄間',{anchor:point(door.xy[0]*1000,door.xy[1]*1000,door.top+.22),layer:'transom',roomIds:door.roomIds});
+  }
+
+  for (const item of model.equipment) {
+    const f=item.source, [a,b,c,d]=item.rect;
+    addObject(item.id,f.name,[
+      ['識別子 / 部屋',f.id+' ／ '+name(item.roomId)],['外形 (X, Y)',range(f.rect)+' m'],
+      ['外形寸法',size(f.rect)+' × 高さ '+fmt(f.h)+' m（元資料の目安）'],
+      ['指定クリアランス',f.clear.length?f.clear.map(r=>range(r)+' m（'+size(r)+' m）').join(' ／ '):'元資料に指定なし'],
+      ...(f.note?[['注記',f.note]]:[]),
+    ],'家具・設備',{anchor:point((a+c)/2,(b+d)/2,item.hi+.065),layer:'equipment',roomIds:[item.roomId]});
+  }
+
+  let mode='orbit', camera, frame, geometry, pickers=[], pending=false, focus='', selected='suite';
+  let gestureMoved=false;
+  const pointers=new Map();
+  let lastDistance=0;
+  const layers=()=>({walls:get('walls').value,equipment:get('equipment').checked,roomNames:get('names').checked,
+    fixtureNames:get('fixture-names').checked,clearance:get('clearance').checked});
+  const quad=([a,b,c,d],h)=>[point(a,b,h),point(c,b,h),point(c,d,h),point(a,d,h)];
+  function border(positions,color) {
+    for(let i=0;i<positions.length;i++) geometry.line(positions[i],positions[(i+1)%positions.length],color);
+  }
+  const lineAt=(x,y,a,b,h,color)=>geometry.line(point(x,y,h),point(a,b,h),color);
+  function meshes() {
+    const layer=layers();
+    geometry=makeGeometry();pickers=[];
+    const pick=(id,rect,lo,hi)=>pickers.push({id,world:model.worldBox({rect,lo,hi})});
+    for(const room of model.rooms) for(const rect of room.floor) {
+      geometry.quad(quad(rect,0),room.id===focus||room.id===selected?palette.focusedFloor:palette.floor);
+      pick(room.id,rect,0,0);
+    }
+    const wallLimit=layer.walls==='none'?0:layer.walls==='cut'?data.display.sectionHeightM:Infinity;
+    for(const wall of model.walls) {
+      if(wallLimit===0) {
+        const [a,b,c,d]=wall.orient==='h'?[wall.start,wall.line,wall.end,wall.line]:[wall.line,wall.start,wall.line,wall.end];
+        lineAt(a,b,c,d,.006,[.51,.62,.60]);
+      }
+    }
+    for(const w of model.boxes) {
+      if(w.lo>=wallLimit) continue;
+      const hi=Math.min(w.hi,wallLimit);
+      const wall=model.walls.find(x=>x.id===w.id);
+      geometry.box(model.worldBox({...w,hi}),selected===w.id?palette.selected:wall.kind==='exterior'?palette.outer:palette.wall);
+      pick(w.id,w.rect,w.lo,hi);
+    }
+    for(const o of model.apertures) {
+      const [a,b,c,d]=o.rect;
+      const color=selected===o.id?palette.selected:o.type==='door'?palette.door:palette.window;
+      if(o.type==='door') {
+        const shape=quad(o.rect,.012);
+        geometry.quad(shape,color);border(shape,palette.edge);pick(o.id,o.rect,0,.012);
+      } else {
+        const height=wallLimit===Infinity ? o.bottom+.018 : Math.min(wallLimit,o.bottom)+.018;
+        const shape=quad(o.rect,height);
+        geometry.quad(shape,color);border(shape,palette.edge);pick(o.id,o.rect,height,height);
+        if(wallLimit===Infinity) {
+          const [x0,y0,x1,y1]=o.orient==='h'?[a,(b+d)/2,c,(b+d)/2]:[(a+c)/2,b,(a+c)/2,d];
+          border([point(x0,y0,o.bottom),point(x1,y1,o.bottom),point(x1,y1,o.top),point(x0,y0,o.top)],color);
+          pick(o.id,o.rect,o.bottom,o.top);
+        }
+      }
+    }
+    for(const e of model.equipment) {
+      if(layer.clearance) for(const rect of e.clear) {
+        const shape=quad(rect,.019);
+        geometry.quad(shape,palette.clear);border(shape,palette.edge);
+      }
+      if(!layer.equipment) continue;
+      const color=selected===e.id?palette.selected:e.source.kind==='設備'?palette.equipment:palette.fixture;
+      const wire=e.id.endsWith('.shower');
+      if(wire) geometry.quad(quad(e.rect,.014),color);
+      geometry.box(model.worldBox(e),color,palette.edge,wire);
+      pick(e.id,e.rect,e.lo,e.hi);
+    }
+  }
+
+  function refresh() {
+    if(pending) return;
+    pending=true;
+    requestAnimationFrame(()=>{
+      pending=false;
+      if(!render) return;
+      const width=canvas.clientWidth,height=canvas.clientHeight;
+      if(!width||!height) return;
+      frame=cameraFrame(camera,width,height);
+      render(frame,geometry);
+      const layer=layers(), placed=[];
+      const visibleObjects=[...objects.values()].filter(o=>o.label)
+        .sort((a,b)=>Number(b.id===selected)-Number(a.id===selected));
+      for(const item of visibleObjects) {
+        const label=item.label;
+        const enabled=item.layer==='room'?layer.roomNames && mode!=='inside':
+          item.layer==='equipment'?layer.fixtureNames && layer.equipment:
+          layer.roomNames && (focus?item.roomIds.includes(focus):mode==='plan'||mode==='orbit');
+        const [x,y,z]=frame.project(mode==='plan'&&item.layer==='transom'
+          ? [item.anchor[0],0,item.anchor[2]]:item.anchor);
+        label.hidden=!enabled||z<.06||x<12||x>width-12||y<18||y>height-20;
+        if(label.hidden) continue;
+        const w=label.offsetWidth,h=label.offsetHeight;
+        const left=clamp(x,w/2+2,width-w/2-2);
+        const offsets=item.layer==='transom'?[-24,24,0]:[0,-20,20,-32,32];
+        const top=offsets.map(offset=>y+offset).find(v=>v>=h/2+1 && v<=height-h/2-1 &&
+          !placed.some(p=>Math.abs(p.left-left)<(p.w+w)/2+3 && Math.abs(p.top-v)<(p.h+h)/2+2));
+        label.hidden=top===undefined;
+        if(label.hidden) continue;
+        label.style.left=left+'px';label.style.top=top+'px';
+        placed.push({left,top,w,h});
+      }
+      const [x1,y1]=frame.project(camera.target);
+      const [x2,y2]=frame.project([camera.target[0],camera.target[1],camera.target[2]-1]);
+      const angle=mode==='inside'?camera.yaw*180/Math.PI-180:Math.atan2(x2-x1,y1-y2)*180/Math.PI;
+      get('north').style.transform='rotate('+angle+'deg)';
+    });
+  }
+  function select(id) {
+    selected=id;choice.value=id;
+    const list=document.createElement('dl');
+    for(const [key,value] of objects.get(id).rows) {
+      const row=document.createElement('div');
+      const term=document.createElement('dt');term.textContent=key;
+      const def=document.createElement('dd');def.textContent=value;
+      row.append(term,def);list.append(row);
+    }
+    get('details').replaceChildren(list);
+    for(const object of objects.values()) object.label?.classList.toggle('active',object.id===id);
+    meshes();refresh();
+  }
+
+  function view(next,{resetLayers=true}={}) {
+    mode=next;
+    if(mode==='inside'&&!focus) focus=model.rooms[0].id;
+    roomChoice.value=focus;
+    const room=rooms.get(focus);
+    const [a,b,c,d]=bounds(room?.rects||model.parent);
+    const spanX=(c-a)/2000, spanY=(d-b)/2000;
+    const radius=Math.hypot(spanX,spanY);
+    const isInside=mode==='inside', isPlan=mode==='plan';
+    const look=isInside?positions.get(focus):[(a+c)/2,(b+d)/2];
+    camera={mode,yaw:isInside?.30:focus?.48:.36,pitch:isInside?-.05:.91,zoom:1,
+      spanX:isPlan?spanX*1.18:radius*1.04,
+      spanY:isPlan?spanY*1.13:radius*.93,
+      target:point(...look,isInside?1.56:isPlan?0:.40)};
+    if(resetLayers) get('walls').value=isInside?'full':'cut';
+    for(const button of document.querySelectorAll('[data-view]')) button.setAttribute('aria-pressed',String(button.dataset.view===mode));
+    get('gesture').textContent=isPlan?'北を上に固定 · ピンチで拡大・縮小':
+      isInside?'1本指で見回す · ピンチで視野を調整':'1本指で回転 · ピンチで拡大・縮小';
+    select(focus||'suite');
+  }
+  function focusRoom(id) {
+    focus=id;
+    view(!id&&mode==='inside'?'orbit':mode,{resetLayers:false});
+  }
+
+  function rotate(dx,dy) {
+    if(mode==='plan') return;
+    camera.yaw+=(mode==='inside'?1:-1)*dx*.008;
+    camera.pitch=clamp(camera.pitch+dy*.008, mode==='inside'?-1.43:.06,1.51);
+    refresh();
+  }
+  function zoom(scale) {
+    camera.zoom=clamp(camera.zoom*scale,mode==='inside'?.64:.50,5);
+    refresh();
+  }
+  const distance=()=>{
+    const [a,b]=pointers.values();
+    return a&&b?Math.hypot(a.x-b.x,a.y-b.y):0;
+  };
+  viewport.addEventListener('pointerdown',event=>{
+    if(event.target.closest('.zoom')||(event.pointerType==='mouse'&&event.button!==0)) return;
+    if(!pointers.size) gestureMoved=false;
+    pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY});
+    (event.target.closest('.label')||viewport).setPointerCapture(event.pointerId);
+    lastDistance=distance();
+    if(pointers.size>1) gestureMoved=true;
+  });
+  viewport.addEventListener('pointermove',event=>{
+    const previous=pointers.get(event.pointerId);
+    if(!previous) return;
+    const {clientX:x,clientY:y}=event;
+    if(Math.hypot(x-previous.startX,y-previous.startY)>5) gestureMoved=true;
+    pointers.set(event.pointerId,{...previous,x,y});
+    if(pointers.size>1) {
+      const next=distance();
+      if(next>5&&lastDistance>5) zoom(next/lastDistance);
+      lastDistance=next;
+    } else if(gestureMoved) rotate(x-previous.x,y-previous.y);
+  });
+  function endPointer(event) {
+    if(!pointers.delete(event.pointerId)) return;
+    lastDistance=distance();
+    if(event.type!=='pointerup'||gestureMoved||pointers.size||!frame) return;
+    const label=event.target.closest('.label');
+    if(label) {
+      const item=objects.get(label.dataset.object);
+      if(item.layer==='room') focusRoom(item.id);
+      else select(item.id);
+      return;
+    }
+    const rect=viewport.getBoundingClientRect();
+    const ray=frame.ray(event.clientX-rect.left,event.clientY-rect.top);
+    let best=Infinity,id;
+    for(const picker of pickers) {
+      const depth=hitBox(picker.world,ray);
+      if(depth<best) {best=depth;id=picker.id;}
+    }
+    if(id) select(id);
+  }
+  for(const type of ['pointerup','pointercancel','lostpointercapture']) viewport.addEventListener(type,endPointer);
+  for(const type of ['touchstart','touchmove','gesturestart','gesturechange']) {
+    viewport.addEventListener(type,event=>{
+      if(!event.target.closest('.zoom')&&event.cancelable) event.preventDefault();
+    },{passive:false});
+  }
+  viewport.addEventListener('wheel',event=>{
+    if(event.cancelable) event.preventDefault();
+    zoom(Math.exp(-clamp(event.deltaY,-120,120)*.0025));
+  },{passive:false});
+  viewport.addEventListener('keydown',event=>{
+    if(event.target!==viewport) return;
+    const keys={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};
+    if(keys[event.key]) {event.preventDefault();rotate(...keys[event.key]);}
+    if(['+','=','-'].includes(event.key)) {event.preventDefault();zoom(event.key==='-'?1/1.2:1.2);}
+  });
+  roomChoice.addEventListener('change',()=>focusRoom(roomChoice.value));
+  choice.addEventListener('change',()=>select(choice.value));
+  document.querySelector('form.layers').addEventListener('change',()=>{meshes();refresh();});
+  document.querySelector('form.layers').addEventListener('submit',event=>event.preventDefault());
+  for(const button of document.querySelectorAll('[data-view]')) {
+    button.addEventListener('click',()=>{
+      if(button.dataset.view==='orbit' || button.dataset.view==='plan') focus='';
+      view(button.dataset.view);
+    });
+  }
+  get('reset').addEventListener('click',()=>{focus='';view('orbit');});
+  get('plus').addEventListener('click',()=>zoom(1.2));
+  get('minus').addEventListener('click',()=>zoom(1/1.2));
+  canvas.addEventListener('webglcontextlost',event=>{
+    event.preventDefault();render=null;
+    showError('3D表示を中断しました。復帰を待つか、ページを再読み込みしてください。');
+  });
+  canvas.addEventListener('webglcontextrestored',()=>{
+    try {render=createRenderer(canvas);status.hidden=true;refresh();} catch(error) {showError(error.message);}
+  });
+  new ResizeObserver(refresh).observe(viewport);
+  view('orbit');
+}
+start().catch(error=>{showError(error.message);console.error(error);});
+</script>
+</head>
+<body>
+<header class="mast">
+  <div><p>魔法学校・第五寮 ／ 東翼3階</p><h1 id="title">Rスイート</h1></div>
+  <div class="version">Stage2c v1.1<span>実寸3D</span></div>
+</header>
+<main>
+  <section class="workspace" aria-label="3Dビューア">
+    <div class="toolbar" aria-label="視点">
+      <button type="button" data-view="orbit" aria-pressed="true">俯瞰</button>
+      <button type="button" data-view="plan" aria-pressed="false">平面</button>
+      <button type="button" data-view="inside" aria-pressed="false">室内</button>
+      <button type="button" id="reset">リセット</button>
+    </div>
+    <div class="room-control"><label for="room">移動先</label><select id="room"><option value="">スイート全体</option></select></div>
+    <div class="viewport" id="viewport" tabindex="0" aria-label="3D表示。矢印で回転、プラスとマイナスで拡大縮小">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div id="labels" class="labels"></div>
+      <div id="compass" aria-hidden="true"><span id="north">↑</span><b>北</b></div>
+      <div class="zoom" aria-label="拡大縮小">
+        <button type="button" id="plus" aria-label="拡大">＋</button>
+        <button type="button" id="minus" aria-label="縮小">−</button>
+      </div>
+      <div id="loading" role="status">3Dモデルを読み込んでいます…</div>
+    </div>
+    <div class="caption"><span id="gesture">1本指で回転 · ピンチで拡大・縮小</span><span>1単位 = 1m</span></div>
+    <form class="layers" aria-label="表示レイヤー">
+      <label>壁 <select id="walls"><option value="cut">断面</option><option value="full">全高</option><option value="none">非表示</option></select></label>
+      <label><input type="checkbox" id="equipment" checked>家具・設備</label>
+      <label><input type="checkbox" id="names" checked>部屋名</label>
+      <label><input type="checkbox" id="fixture-names">家具名</label>
+      <label><input type="checkbox" id="clearance">クリアランス</label>
+    </form>
+  </section>
+  <section class="inspection" aria-labelledby="inspection-title">
+    <header class="inspect-head">
+      <h2 id="inspection-title">寸法・座標</h2>
+      <label for="object" class="sr">確認対象</label><select id="object"></select>
+    </header>
+    <div id="details" aria-live="polite"></div>
+    <div class="key" aria-label="凡例"><span class="door-key">扉・通路開口</span><span class="window-key">外窓</span><span class="space-key">指定クリアランス</span></div>
+    <p class="caution">開口高2.10mと外窓の上端2.40mは表示用の暫定値です。書斎欄間は記号で示します。</p>
+    <a class="bath-link" href="../">R浴室単体ビューアへ</a>
+  </section>
+</main>
+</body>
+</html>
